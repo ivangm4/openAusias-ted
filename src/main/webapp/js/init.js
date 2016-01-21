@@ -58,13 +58,13 @@ init = {
         })
     },
     getSessionPromise: function () {
-        return this.ajaxCall(configuration.getAppUrl() + '?ob=usuario&op=getsessionstatus', 'GET', '');
+        return this.ajaxCall(configuration.getAppUrl() + '?ob=empleado&op=getsessionstatus', 'GET', '');
     },
     getLoginPromise: function (username, password) {
-        return this.ajaxCall(configuration.getAppUrl() + '?ob=usuario&op=login&login=' + username + '&password=' + password, 'GET', '');
+        return this.ajaxCall(configuration.getAppUrl() + '?ob=empleado&op=login&login=' + username + '&password=' + password, 'GET', '');
     },
     getLogoutPromise: function () {
-        return this.ajaxCall(configuration.getAppUrl() + '?ob=usuario&op=logout', 'GET', '');
+        return this.ajaxCall(configuration.getAppUrl() + '?ob=empleado&op=logout', 'GET', '');
     },
     updateConnectedState: function (loginName) {
         $('#broth_username_id').text(loginName);
@@ -164,10 +164,10 @@ init = {
                                                                 dom.form('role="form"',
                                                                         dom.fieldset('',
                                                                                 dom.div('class="form-group"',
-                                                                                        dom.input('class="form-control" id="broth_input_login" placeholder="Login" name="email" type="email" value="rafael" autofocus', '')
+                                                                                        dom.input('class="form-control" id="broth_input_login" placeholder="Login" name="email" type="email" value="anrigue" autofocus', '')
                                                                                         ) +
                                                                                 dom.div('class="form-group"',
-                                                                                        dom.input('class="form-control" id="broth_input_password" placeholder="Password" name="password" type="password" value="rafael"', '')
+                                                                                        dom.input('class="form-control" id="broth_input_password" placeholder="Password" name="password" type="password" value="anrigue"', '')
                                                                                         ) +
                                                                                 dom.a('href="index.html" id="broth_button_login" class="btn btn-lg btn-success btn-block"', 'Login')
                                                                                 )

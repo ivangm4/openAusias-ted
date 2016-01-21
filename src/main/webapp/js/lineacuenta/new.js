@@ -27,24 +27,25 @@
  */
 
 'use strict';
-moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
+
+moduloLineacuenta.controller('LineacuentaNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
-        $scope.ob = 'documento';
+        $scope.ob = 'lineacuenta';
         $scope.op = 'new';
         $scope.result = null;
-        $scope.title = "Edición de documento";
+        $scope.title = "Edición de la línea de cuenta";
         $scope.icon = "fa-file-text-o";
         $scope.obj = {};
-        $scope.obj.obj_tipodocumento = {"id": 0};
-        $scope.obj.obj_usuario = {"id": 0};
+        $scope.obj.obj_cuenta = {"id": 0};
+        $scope.obj.obj_producto = {"id": 0};
         if (sharedSpaceService.getFase() == 0) {
-            if ($routeParams.tipodocumento && $routeParams.tipodocumento > 0) {
-                $scope.obj.obj_tipodocumento.id = $routeParams.tipodocumento;
+            if ($routeParams.cuenta && $routeParams.cuenta > 0) {
+                $scope.obj.obj_cuenta.id = $routeParams.cuenta;
             }
-            if ($routeParams.usuario && $routeParams.usuario > 0) {
-                $scope.obj.obj_usuario.id = $routeParams.usuario;
+            if ($routeParams.producto && $routeParams.producto > 0) {
+                $scope.obj.obj_producto.id = $routeParams.producto;
             }
         } else {
             $scope.obj = sharedSpaceService.getObject();
@@ -57,11 +58,6 @@ moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', 
             $location.path('/' + foreignObjectName + '/selection/1/10');
         }
         $scope.save = function () {
-            //var dateAltaAsString = $filter('date')($scope.obj.alta, "dd/MM/yyyy");
-            //var dateCambioAsString = $filter('date')($scope.obj.cambio, "dd/MM/yyyy");
-            //$scope.obj.alta = dateAltaAsString;
-            //$scope.obj.cambio = dateCambioAsString;
-            //console.log({json: JSON.stringify(serverService.array_identificarArray($scope.obj))});            
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             });

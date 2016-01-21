@@ -27,29 +27,19 @@
  */
 
 'use strict';
-moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
+
+moduloTipoempleado.controller('TipoempleadoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
-        $scope.ob = 'documento';
+        $scope.ob = 'tipoempleado';
         $scope.op = 'new';
         $scope.result = null;
-        $scope.title = "Edición de documento";
+        $scope.title = "Edición de tipo de empleado";
         $scope.icon = "fa-file-text-o";
         $scope.obj = {};
-        $scope.obj.obj_tipodocumento = {"id": 0};
-        $scope.obj.obj_usuario = {"id": 0};
-        if (sharedSpaceService.getFase() == 0) {
-            if ($routeParams.tipodocumento && $routeParams.tipodocumento > 0) {
-                $scope.obj.obj_tipodocumento.id = $routeParams.tipodocumento;
-            }
-            if ($routeParams.usuario && $routeParams.usuario > 0) {
-                $scope.obj.obj_usuario.id = $routeParams.usuario;
-            }
-        } else {
-            $scope.obj = sharedSpaceService.getObject();
-            sharedSpaceService.setFase(0);
-        }
+        $scope.obj = sharedSpaceService.getObject();
+        sharedSpaceService.setFase(0);
         $scope.chooseOne = function (foreignObjectName) {
             sharedSpaceService.setObject($scope.obj);
             sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
@@ -57,29 +47,10 @@ moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', 
             $location.path('/' + foreignObjectName + '/selection/1/10');
         }
         $scope.save = function () {
-            //var dateAltaAsString = $filter('date')($scope.obj.alta, "dd/MM/yyyy");
-            //var dateCambioAsString = $filter('date')($scope.obj.cambio, "dd/MM/yyyy");
-            //$scope.obj.alta = dateAltaAsString;
-            //$scope.obj.cambio = dateCambioAsString;
-            //console.log({json: JSON.stringify(serverService.array_identificarArray($scope.obj))});            
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             });
         };
-        $scope.$watch('obj.obj_cuenta.id', function () {
-            if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('cuenta', $scope.obj.obj_cuenta.id)).then(function (data2) {
-                    $scope.obj.obj_cuenta = data2.message;
-                });
-            }
-        });
-        $scope.$watch('obj.obj_producto.id', function () {
-            if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('producto', $scope.obj.obj_producto.id)).then(function (data2) {
-                    $scope.obj.obj_producto = data2.message;
-                });
-            }
-        });
         $scope.back = function () {
             window.history.back();
         };
@@ -87,7 +58,7 @@ moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', 
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/lineacuenta/plist');
+            $location.path('/tipoempleado/plist');
         };
 
         //datepicker

@@ -1,0 +1,117 @@
+<!--
+Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+
+openAUSIAS: The stunning micro-library that helps you to develop easily
+            AJAX web applications by using Java and jQuery
+openAUSIAS is distributed under the MIT License (MIT)
+Sources at https://github.com/rafaelaznar/
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+-->
+
+<div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
+<div class="panel-body">
+    <form name="outerForm" class="form-horizontal" ng-show="result == null">
+
+        <div id="id-group" class="form-group">
+            <label class="col-sm-2 control-label" for="id">Identificador:</label>
+            <div class="control col-sm-3">
+                <input ng-model="obj.id" type="text" id="id" class="form-control" name="id" size="15" placeholder="id" disabled="disabled">
+            </div>
+        </div>
+
+        <div id="titulo-group" class="form-group" 
+             ng-class="{'has-error': (outerForm.cantidadProducto.$error.required || outerForm.cantidadProducto.$error.minlength) && !outerForm.cantidadProducto.$pristine}">
+            <label class="col-sm-2 control-label" for="cantidadProducto">Cantidad Producto:</label>
+            <div class="control col-sm-8">
+                <input ng-model="obj.cantidadProducto"
+                       type="number"
+                       id="cantidadProducto"
+                       class="form-control"
+                       name="cantidadProducto"
+                       size="15"
+                       placeholder="cantidadProducto"
+                       required>
+                <span class="help-block" ng-show="!outerForm.cantidadProducto.$pristine && outerForm.cantidadProducto.$error.required">El campo cantidad es obligatorio.</span>
+            </div>
+        </div>
+   
+        <!--- Claves externas --->
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_cuenta">Cuenta</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_cuenta_group">
+                    <span class="input-group-addon" id="obj_cuenta_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('cuenta')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_cuenta.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_cuenta" name="obj_cuenta" type="text">
+                    <span class="input-group-addon">
+                        <a href="#/cuenta/view/{{obj.obj_cuenta.fechahora}}">
+                            <span>{{obj.obj_cuenta.id}}</span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_producto">Producto</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_producto_group">
+                    <span class="input-group-addon" id="obj_producto_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('producto')">
+                        </span>
+                    </span>
+                    <input ng-model="obj.obj_producto.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_producto" name="obj_producto" type="text">
+                    <span class="input-group-addon">
+                        <a href="#/producto/view/{{obj.obj_producto.id}}">
+                            <span>{{obj.obj_producto.nombre}}</span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="control-group text-right">
+            <div class="controls">
+                <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
+                <a class="btn btn-default" ng-click="plist()">Ir al listado de empleados</a>
+                <a class="btn btn-default" ng-click="close()">Cerrar</a>
+            </div>
+        </div>
+        
+    </form>
+    
+    <div ng-show="result != null">
+        <div class="alert alert-success" ng-show="result.status == 200">
+            <h2>Se ha modificado el registro</h2>
+            <a ng-href="#/lineacuenta/view/{{id}}">Ver el registro modificado</a>
+        </div>
+        <div class="alert alert-danger" ng-show="result.status != 200">
+            <h2>Error al modificar la línea de cuenta: no se ha modificado la línea de cuenta.</h2>
+            <h3>Código: {{result.status}}</h3>
+            <h3>Mensaje: {{result.message}}</h3>
+        </div>
+    </div>
+</div>
+<div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>

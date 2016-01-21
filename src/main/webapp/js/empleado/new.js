@@ -27,24 +27,21 @@
  */
 
 'use strict';
-moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
+
+moduloEmpleado.controller('EmpleadoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
-        $scope.ob = 'documento';
+        $scope.ob = 'empleado';
         $scope.op = 'new';
         $scope.result = null;
-        $scope.title = "Edición de documento";
+        $scope.title = "Edición de empleado";
         $scope.icon = "fa-file-text-o";
         $scope.obj = {};
-        $scope.obj.obj_tipodocumento = {"id": 0};
-        $scope.obj.obj_usuario = {"id": 0};
+        $scope.obj.obj_tipoempleado = {"id": 0};
         if (sharedSpaceService.getFase() == 0) {
-            if ($routeParams.tipodocumento && $routeParams.tipodocumento > 0) {
-                $scope.obj.obj_tipodocumento.id = $routeParams.tipodocumento;
-            }
-            if ($routeParams.usuario && $routeParams.usuario > 0) {
-                $scope.obj.obj_usuario.id = $routeParams.usuario;
+            if ($routeParams.tipoempleado && $routeParams.tipoempleado > 0) {
+                $scope.obj.obj_tipoempleado.id = $routeParams.tipoempleado;
             }
         } else {
             $scope.obj = sharedSpaceService.getObject();
@@ -57,26 +54,16 @@ moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', 
             $location.path('/' + foreignObjectName + '/selection/1/10');
         }
         $scope.save = function () {
-            //var dateAltaAsString = $filter('date')($scope.obj.alta, "dd/MM/yyyy");
-            //var dateCambioAsString = $filter('date')($scope.obj.cambio, "dd/MM/yyyy");
-            //$scope.obj.alta = dateAltaAsString;
-            //$scope.obj.cambio = dateCambioAsString;
-            //console.log({json: JSON.stringify(serverService.array_identificarArray($scope.obj))});            
+            var dateFechaNaAsString = $filter('date')($scope.obj.fechaNa, "dd/MM/yyyy");
+            $scope.obj.fechaNa = dateFechaNaAsString;
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             });
         };
-        $scope.$watch('obj.obj_cuenta.id', function () {
+        $scope.$watch('obj.obj_tipoempleado.id', function () {
             if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('cuenta', $scope.obj.obj_cuenta.id)).then(function (data2) {
-                    $scope.obj.obj_cuenta = data2.message;
-                });
-            }
-        });
-        $scope.$watch('obj.obj_producto.id', function () {
-            if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('producto', $scope.obj.obj_producto.id)).then(function (data2) {
-                    $scope.obj.obj_producto = data2.message;
+                serverService.getDataFromPromise(serverService.promise_getOne('tipoempleado', $scope.obj.obj_tipoempleado.id)).then(function (data2) {
+                    $scope.obj.obj_tipoempleado = data2.message;
                 });
             }
         });
@@ -87,7 +74,7 @@ moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', 
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/lineacuenta/plist');
+            $location.path('/empleado/plist');
         };
 
         //datepicker

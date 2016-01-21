@@ -27,41 +27,31 @@
  */
 
 'use strict';
-moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
+
+moduloLineacuenta.controller('LineacuentaEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
-        $scope.ob = 'documento';
-        $scope.op = 'new';
+        $scope.ob = 'lineacuenta';
+        $scope.op = 'edit';
         $scope.result = null;
-        $scope.title = "Edición de documento";
+        $scope.title = "Edición de la línea de cuenta";
         $scope.icon = "fa-file-text-o";
-        $scope.obj = {};
-        $scope.obj.obj_tipodocumento = {"id": 0};
-        $scope.obj.obj_usuario = {"id": 0};
         if (sharedSpaceService.getFase() == 0) {
-            if ($routeParams.tipodocumento && $routeParams.tipodocumento > 0) {
-                $scope.obj.obj_tipodocumento.id = $routeParams.tipodocumento;
-            }
-            if ($routeParams.usuario && $routeParams.usuario > 0) {
-                $scope.obj.obj_usuario.id = $routeParams.usuario;
-            }
+            serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
+                $scope.obj = data.message;
+            });
         } else {
             $scope.obj = sharedSpaceService.getObject();
             sharedSpaceService.setFase(0);
         }
         $scope.chooseOne = function (foreignObjectName) {
             sharedSpaceService.setObject($scope.obj);
-            sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
+            sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op + '/' + $scope.id);
             sharedSpaceService.setFase(1);
             $location.path('/' + foreignObjectName + '/selection/1/10');
         }
         $scope.save = function () {
-            //var dateAltaAsString = $filter('date')($scope.obj.alta, "dd/MM/yyyy");
-            //var dateCambioAsString = $filter('date')($scope.obj.cambio, "dd/MM/yyyy");
-            //$scope.obj.alta = dateAltaAsString;
-            //$scope.obj.cambio = dateCambioAsString;
-            //console.log({json: JSON.stringify(serverService.array_identificarArray($scope.obj))});            
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             });

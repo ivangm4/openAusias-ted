@@ -39,13 +39,17 @@ var openAusias = angular.module('myApp', [
     'usuarioControllers',
     'tipodocumentoControllers',
     'tipousuarioControllers',
+    'empleadoControllers',
+    'lineacuentaControllers',
+    'mesaControllers',
+    'tipoempleadoControllers',
     'ui.bootstrap',
     'ngSanitize' //http://stackoverflow.com/questions/9381926/insert-html-into-view-using-angularjs
 ]);
 
 openAusias.config(['$routeProvider', function ($routeProvider) {
 
-        $routeProvider.when('/', {templateUrl: '/home'});
+        $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         //------------
         $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         //------------
@@ -64,6 +68,41 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         //------------
         $routeProvider.when('/tipodocumento/view/:id', {templateUrl: 'js/tipodocumento/view.html', controller: 'TipodocumentoViewController'});
         $routeProvider.when('/tipodocumento/selection/:page/:rpp', {templateUrl: 'js/tipodocumento/selection.html', controller: 'TipodocumentoSelectionController'});
+        
+        //------ Empleado ------//
+        $routeProvider.when('/empleado/view/:id', {templateUrl: 'js/empleado/view.html', controller: 'EmpleadoViewController'});
+        $routeProvider.when('/empleado/new', {templateUrl: 'js/empleado/newedit.html', controller: 'EmpleadoNewController'});
+        $routeProvider.when('/empleado/edit/:id', {templateUrl: 'js/empleado/newedit.html', controller: 'EmpleadoEditController'});
+        $routeProvider.when('/empleado/remove/:id', {templateUrl: 'js/empleado/remove.html', controller: 'EmpleadoRemoveController'});
+        $routeProvider.when('/empleado/plist/:page?/:rpp?', {templateUrl: 'js/empleado/plist.html', controller: 'EmpleadoPListController'});
+        
+        //------ Línea de Cuenta ------//
+        $routeProvider.when('/lineacuenta/view/:id', {templateUrl: 'js/lineacuenta/view.html', controller: 'LineacuentaViewController'});
+        $routeProvider.when('/lineacuenta/new', {templateUrl: 'js/lineacuenta/newedit.html', controller: 'LineacuentaNewController'});
+        $routeProvider.when('/lineacuenta/edit/:id', {templateUrl: 'js/lineacuenta/newedit.html', controller: 'LineacuentaEditController'});
+        $routeProvider.when('/lineacuenta/remove/:id', {templateUrl: 'js/lineacuenta/remove.html', controller: 'LineacuentaRemoveController'});
+        $routeProvider.when('/lineacuenta/plist/:page?/:rpp?', {templateUrl: 'js/lineacuenta/plist.html', controller: 'LineacuentaPListController'});
+        
+        //------ Mesa ------//
+        $routeProvider.when('/mesa/view/:id', {templateUrl: 'js/mesa/view.html', controller: 'MesaViewController'});
+        $routeProvider.when('/mesa/new', {templateUrl: 'js/mesa/newedit.html', controller: 'MesaNewController'});
+        $routeProvider.when('/mesa/edit/:id', {templateUrl: 'js/mesa/newedit.html', controller: 'MesaEditController'});
+        $routeProvider.when('/mesa/remove/:id', {templateUrl: 'js/mesa/remove.html', controller: 'MesaRemoveController'});
+        $routeProvider.when('/mesa/plist/:page?/:rpp?', {templateUrl: 'js/mesa/plist.html', controller: 'MesaPListController'});
+        
+        //------ Tipo Empleado ------//
+        $routeProvider.when('/tipoempleado/view/:id', {templateUrl: 'js/tipoempleado/view.html', controller: 'TipoempleadoViewController'});
+        $routeProvider.when('/tipoempleado/new', {templateUrl: 'js/tipoempleado/newedit.html', controller: 'TipoempleadoNewController'});
+        $routeProvider.when('/tipoempleado/edit/:id', {templateUrl: 'js/tipoempleado/newedit.html', controller: 'TipoempleadoEditController'});
+        $routeProvider.when('/tipoempleado/remove/:id', {templateUrl: 'js/tipoempleado/remove.html', controller: 'TipoempleadoRemoveController'});
+        $routeProvider.when('/tipoempleado/plist/:page?/:rpp?', {templateUrl: 'js/tipoempleado/plist.html', controller: 'TipoempleadoPListController'});
+        $routeProvider.when('/tipoempleado/selection/:page/:rpp', {templateUrl: 'js/tipoempleado/selection.html', controller: 'TipoempleadoSelectionController'});
+
+
+
+
+
+
 
 
 
@@ -81,4 +120,8 @@ var moduloUsuario = angular.module('usuarioControllers', []);
 var moduloDocumento = angular.module('documentoControllers', []);
 var moduloTipodocumento = angular.module('tipodocumentoControllers', []);
 var moduloTipousuario = angular.module('tipousuarioControllers', []);
+var moduloEmpleado = angular.module('empleadoControllers', []);
+var moduloLineacuenta = angular.module('lineacuentaControllers', []);
+var moduloMesa = angular.module('mesaControllers', []);
+var moduloTipoempleado = angular.module('tipoempleadoControllers', []);
 
