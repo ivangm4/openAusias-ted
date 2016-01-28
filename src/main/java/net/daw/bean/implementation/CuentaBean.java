@@ -38,15 +38,21 @@ import java.sql.Connection;
 import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import net.daw.bean.publicinterface.GenericBean;
 import net.daw.dao.implementation.MesaDao;
+import net.daw.helper.statics.EncodingUtilHelper;
+
 
 public class CuentaBean implements GenericBean {
 
     @Expose
     private Integer id;
     @Expose
-    private Date fechahora = new Date();
+    private Date fecha = new Date();
+    @Expose
+    private Time hora;
     @Expose(serialize = false)
     private Integer id_mesa = 0;
     @Expose(deserialize = false)
@@ -68,12 +74,20 @@ public class CuentaBean implements GenericBean {
         this.id = id;
     }
 
-    public Date getFechahora() {
-        return fechahora;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechahora(Date fechahora) {
-        this.fechahora = fechahora;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Time getHora() {
+        return hora;
+    }
+
+    public void setHora(Time hora) {
+        this.hora = hora;
     }
 
     public Integer getId_mesa() {
@@ -95,7 +109,8 @@ public class CuentaBean implements GenericBean {
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
-        strJson += "fechahora:" + fechahora + ",";
+        strJson += "fecha:" + fecha + ",";
+        strJson += "hora:" + hora + ",";
         if (expand) {
             strJson += "obj_mesa:" + obj_mesa.toJson(false) + ",";
         } else {
@@ -109,7 +124,8 @@ public class CuentaBean implements GenericBean {
     public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
-        strColumns += "fechahora,";
+        strColumns += "fecha,";
+        strColumns += "hora,";
         strColumns += "id_mesa";
 
         return strColumns;
@@ -119,7 +135,8 @@ public class CuentaBean implements GenericBean {
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += fechahora + ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha) + ",";
+        strColumns += hora + ",";
         strColumns += id_mesa;
 
         return strColumns;
@@ -127,9 +144,10 @@ public class CuentaBean implements GenericBean {
 
     @Override
     public String toPairs() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
         String strPairs = "";
-        strPairs += "id=" + id + ",";
-        strPairs += "fechahora=" + fechahora + ",";
+        strPairs += "fecha=" + EncodingUtilHelper.quotate(format.format(fecha)) + ",";
+        strPairs += "hora=" + hora + ",";
         strPairs += "id_mesa=" + id_mesa;
 
         return strPairs;
@@ -138,7 +156,8 @@ public class CuentaBean implements GenericBean {
     @Override
     public CuentaBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
-        this.setFechahora(oResultSet.getDate("fechahora"));
+        this.setFecha(oResultSet.getDate("fecha"));
+        this.setHora(oResultSet.getTime("hora"));
         if (expand > 0) {
             MesaBean oMesaBean = new MesaBean();
             MesaDao oMesaDao = new MesaDao(pooledConnection);
@@ -149,7 +168,5 @@ public class CuentaBean implements GenericBean {
             this.setId_mesa(oResultSet.getInt("id_mesa"));
         }
         return this;
-
     }
-
 }

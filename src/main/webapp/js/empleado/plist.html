@@ -99,15 +99,15 @@ THE SOFTWARE.
                             <div class="col-md-12 text-center">
                                 <p></p>
                                 <p>Campos visibles:</p>
-                                <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
-                                <input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre" >Nombre
+                                <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Identificador
+                                <input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre">Nombre
                                 <input type="checkbox" ng-model="visibles.apellidos" ng-checked="visibles.apellidos">Apellidos
                                 <input type="checkbox" ng-model="visibles.dni" ng-checked="visibles.dni">DNI
                                 <input type="checkbox" ng-model="visibles.telefono" ng-checked="visibles.telefono">Teléfono
                                 <input type="checkbox" ng-model="visibles.fechaNa" ng-checked="visibles.fechaNa">Fecha Nacimiento
                                 <input type="checkbox" ng-model="visibles.login" ng-checked="visibles.login">Login
                                 <input type="checkbox" ng-model="visibles.password" ng-checked="visibles.password">Password
-                                <input type="checkbox" ng-model="visibles.id_tipoempleado" ng-checked="visibles.id_tipoempleado">Tipo Empleado                                                                                                                            
+                                <input type="checkbox" ng-model="visibles.id_tipoempleado" ng-checked="visibles.id_tipoempleado">Tipo de Empleado                                                                                                                            
                                 <p></p>
                             </div>
                         </div>
@@ -118,7 +118,7 @@ THE SOFTWARE.
                                 <p></p>
                                 <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm">
                                     <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
-                                        <option style="display:none">selecciona un campo</option>
+                                        <option style="display:none">Selecciona un campo</option>
                                         <option value="id">Identificador</option>
                                         <option value="nombre">Nombre</option>
                                         <option value="apellidos">Apellidos</option>
@@ -130,15 +130,15 @@ THE SOFTWARE.
                                         <option value="id_tipoempleado">Tipo Empleado</option>                                                 
                                     </select>
                                     <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
-                                        <option style="display:none">selecciona una operacion</option>
-                                        <option value="like" ng-selected="true">contiene</option>
-                                        <option value="notlike">no contiene</option>
-                                        <option value="equals">es igual a</option>
-                                        <option value="notequalto">es distinto de</option>
-                                        <option value="less">es menor que</option>
-                                        <option value="lessorequal">es menor o igual que</option>
-                                        <option value="greater">es mayor que</option>
-                                        <option value="greaterorequal">es mayor o igual que</option>
+                                        <option style="display:none">Selecciona una operación</option>
+                                        <option value="like" ng-selected="true">Contiene</option>
+                                        <option value="notlike">No contiene</option>
+                                        <option value="equals">Es igual a</option>
+                                        <option value="notequalto">Es distinto de</option>
+                                        <option value="less">Es menor que</option>
+                                        <option value="lessorequal">Es menor o igual que</option>
+                                        <option value="greater">Es mayor que</option>
+                                        <option value="greaterorequal">Es mayor o igual que</option>
                                     </select>
                                     <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filtervalue">
                                     <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter()" />
@@ -205,13 +205,13 @@ THE SOFTWARE.
                         <a ng-show="visibles.telefono" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
 
                     </th>
-                    <th ng-show="visibles.fechaNa" class="text-center"">
-                        Fecha Nacimiento<br/>
+                    <th ng-show="visibles.fechaNa" class="text-center">
+                        Fecha de Nacimiento<br/>
                         <a ng-show="visibles.fechaNa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.fechaNa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
 
                     </th>
-                    <th ng-show="visibles.login" class="text-center"">
+                    <th ng-show="visibles.login" class="text-center">
                         Login<br/>
                         <a ng-show="visibles.login" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.login" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>

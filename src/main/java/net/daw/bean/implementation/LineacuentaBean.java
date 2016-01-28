@@ -152,11 +152,9 @@ public class LineacuentaBean implements GenericBean {
     @Override
     public String toPairs() {
         String strPairs = "";
-        strPairs += "id=" + id + ",";
         strPairs += "cantidadProducto=" + cantidadProducto + ",";
         strPairs += "id_cuenta=" + id_cuenta + ",";
         strPairs += "id_producto=" + id_producto;
-
         return strPairs;
     }
 

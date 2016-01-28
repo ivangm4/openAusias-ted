@@ -38,6 +38,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
+import net.daw.helper.statics.EncodingUtilHelper;
 
 public class TipoempleadoBean implements GenericBean {
 
@@ -90,7 +91,7 @@ public class TipoempleadoBean implements GenericBean {
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += cargo;
+        strColumns += EncodingUtilHelper.quotate(cargo);
 
         return strColumns;
     }
@@ -98,9 +99,7 @@ public class TipoempleadoBean implements GenericBean {
     @Override
     public String toPairs() {
         String strPairs = "";
-        strPairs += "id=" + id + ",";
-        strPairs += "cargo=" + cargo;
-
+        strPairs += "cargo=" + EncodingUtilHelper.quotate(cargo);
         return strPairs;
     }
 

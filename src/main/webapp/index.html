@@ -26,6 +26,7 @@
  * THE SOFTWARE.
  */
 -->
+
 <!DOCTYPE html>
 <html class="no-js" lang="en" ng-app="myApp">
     <head>
@@ -97,7 +98,7 @@
             </div>     
             <div id="brothModalLogin"></div>
         </div>
-        <!-- ------------------------------- -->  
+        <!------------------------------------------------------------------------->
         <script src="vendor/angular/angular.min.js" type="text/javascript"></script>
         <script src="vendor/angular/angular-sanitize.min.js" type="text/javascript"></script>
         <script src="vendor/angular/angular-route.min.js" type="text/javascript"></script>
@@ -106,67 +107,73 @@
         <script src="vendor/UIBootstrap/ui-bootstrap-tpls-1.0.0.min.js" type="text/javascript"></script>
         <script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="vendor/moment/moment-with-locales.min.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->  
+        <!------------------------------------------------------------------------->
         <script src="js/app.js" type="text/javascript"></script>
         <script src="js/services.js" type="text/javascript"></script>
         <script src="js/filters.js" type="text/javascript"></script>
         <script src="js/directives.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->  
+        <!------------------------------------------------------------------------->
         <script src="js/configuration.js" type="text/javascript"></script>
         <script src="js/init.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->  
+        <!------------------------------------------------------------------------->
         <script src="js/system/home.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->  
-        <script src="js/tipodocumento/view.js" type="text/javascript"></script>
-        <script src="js/tipodocumento/selection.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->  
-        <script src="js/documento/plist.js" type="text/javascript"></script>
-        <script src="js/documento/view.js" type="text/javascript"></script>
-        <script src="js/documento/remove.js" type="text/javascript"></script>
-        <script src="js/documento/edit.js" type="text/javascript"></script>
-        <script src="js/documento/new.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->
-        <script src="js/usuario/view.js" type="text/javascript"></script>
-        <script src="js/usuario/plist.js" type="text/javascript"></script>
-        <script src="js/usuario/edit.js" type="text/javascript"></script>  
-        <script src="js/usuario/new.js" type="text/javascript"></script>
-        <script src="js/usuario/selection.js" type="text/javascript"></script>
-        <!-- ------------------------------- -->  
-        <script src="js/tipousuario/selection.js" type="text/javascript"></script>
+        <!------------------------------------------------------------------------->
+        
+        <!----- Tipo de Empleado ----->
+        <script src="js/tipoempleado/plist.js" type="text/javascript"></script>
+        <script src="js/tipoempleado/view.js" type="text/javascript"></script>
+        <script src="js/tipoempleado/new.js" type="text/javascript"></script>
+        <script src="js/tipoempleado/edit.js" type="text/javascript"></script>
+        <script src="js/tipoempleado/remove.js" type="text/javascript"></script>
+        <script src="js/tipoempleado/selection.js" type="text/javascript"></script>
 
         <!----- Empleado ----->
         <script src="js/empleado/plist.js" type="text/javascript"></script>
         <script src="js/empleado/view.js" type="text/javascript"></script>
-        <script src="js/empleado/remove.js" type="text/javascript"></script>
-        <script src="js/empleado/edit.js" type="text/javascript"></script>
         <script src="js/empleado/new.js" type="text/javascript"></script>
-        
-        <!----- Linea de Cuenta ----->
-        <script src="js/lineacuenta/plist.js" type="text/javascript"></script>
-        <script src="js/lineacuenta/edit.js" type="text/javascript"></script>
-        <script src="js/lineacuenta/new.js" type="text/javascript"></script>
-        <script src="js/lineacuenta/view.js" type="text/javascript"></script>
-        <script src="js/lineacuenta/remove.js" type="text/javascript"></script>
+        <script src="js/empleado/edit.js" type="text/javascript"></script>
+        <script src="js/empleado/remove.js" type="text/javascript"></script>
+        <script src="js/empleado/selection.js" type="text/javascript"></script>
         
         <!----- Mesa ----->
         <script src="js/mesa/plist.js" type="text/javascript"></script>
         <script src="js/mesa/view.js" type="text/javascript"></script>
-        <script src="js/mesa/remove.js" type="text/javascript"></script>
-        <script src="js/mesa/edit.js" type="text/javascript"></script>
         <script src="js/mesa/new.js" type="text/javascript"></script>
+        <script src="js/mesa/edit.js" type="text/javascript"></script>
+        <script src="js/mesa/remove.js" type="text/javascript"></script>
+        <script src="js/mesa/selection.js" type="text/javascript"></script>
+
+        <!----- Cuenta ----->
+        <script src="js/cuenta/plist.js" type="text/javascript"></script>
+        <script src="js/cuenta/view.js" type="text/javascript"></script>
+        <script src="js/cuenta/new.js" type="text/javascript"></script>
+        <script src="js/cuenta/edit.js" type="text/javascript"></script>
+        <script src="js/cuenta/remove.js" type="text/javascript"></script>
+        <script src="js/cuenta/selection.js" type="text/javascript"></script>
         
-        <!----- Tipo de Empleado ----->
-        <script src="js/tipoempleado/view.js" type="text/javascript"></script>
-        <script src="js/tipoempleado/plist.js" type="text/javascript"></script>
-        <script src="js/tipoempleado/remove.js" type="text/javascript"></script>
-        <script src="js/tipoempleado/edit.js" type="text/javascript"></script>
-        <script src="js/tipoempleado/new.js" type="text/javascript"></script>
-        <script src="js/tipoempleado/selection.js" type="text/javascript"></script>
+        <!----- Linea de Cuenta ----->
+        <script src="js/lineacuenta/plist.js" type="text/javascript"></script>
+        <script src="js/lineacuenta/view.js" type="text/javascript"></script>
+        <script src="js/lineacuenta/new.js" type="text/javascript"></script>
+        <script src="js/lineacuenta/edit.js" type="text/javascript"></script>
+        <script src="js/lineacuenta/remove.js" type="text/javascript"></script>
         
+        <!----- Producto ----->
+        <script src="js/producto/plist.js" type="text/javascript"></script>
+        <script src="js/producto/view.js" type="text/javascript"></script>
+        <script src="js/producto/new.js" type="text/javascript"></script>
+        <script src="js/producto/edit.js" type="text/javascript"></script>
+        <script src="js/producto/remove.js" type="text/javascript"></script>
+        <script src="js/producto/selection.js" type="text/javascript"></script>
         
-        
-        
-        
+        <!----- Tipo de Producto ----->
+        <script src="js/tipoproducto/plist.js" type="text/javascript"></script>
+        <script src="js/tipoproducto/view.js" type="text/javascript"></script>
+        <script src="js/tipoproducto/new.js" type="text/javascript"></script>
+        <script src="js/tipoproducto/edit.js" type="text/javascript"></script>
+        <script src="js/tipoproducto/remove.js" type="text/javascript"></script>
+        <script src="js/tipoproducto/selection.js" type="text/javascript"></script>
+
         <!------------------------------------------------------------------------->
         
         <script type="text/javascript">

@@ -74,8 +74,8 @@ moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', 
 
         $scope.$watch('obj.obj_tipodocumento.id', function () {
             if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('cuenta', $scope.obj.obj_cuenta.id)).then(function (data2) {
-                    $scope.obj.obj_cuenta = data2.message;
+                serverService.getDataFromPromise(serverService.promise_getOne('documento', $scope.obj.obj_cuenta.id)).then(function (data2) {
+                    $scope.obj.obj_tipodocumento = data2.message;
                 });
             }
         });

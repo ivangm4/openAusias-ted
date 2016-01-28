@@ -100,7 +100,7 @@ THE SOFTWARE.
                             <div class="col-md-12 text-center">
                                 <p></p>
                                 <p>Campos visibles:</p>
-                                <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
+                                <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Identificador
                                 <input type="checkbox" ng-model="visibles.cargo" ng-checked="visibles.cargo" >Cargo                                                                             
                                 <p></p>
                             </div>
@@ -112,20 +112,20 @@ THE SOFTWARE.
                                 <p></p>
                                 <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm">
                                     <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
-                                        <option style="display:none">selecciona un campo</option>
+                                        <option style="display:none">Selecciona un campo</option>
                                         <option value="id">Identificador</option>
                                         <option value="cargo">Cargo</option>                                                
                                     </select>
                                     <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
-                                        <option style="display:none">selecciona una operacion</option>
-                                        <option value="like" ng-selected="true">contiene</option>
-                                        <option value="notlike">no contiene</option>
-                                        <option value="equals">es igual a</option>
-                                        <option value="notequalto">es distinto de</option>
-                                        <option value="less">es menor que</option>
-                                        <option value="lessorequal">es menor o igual que</option>
-                                        <option value="greater">es mayor que</option>
-                                        <option value="greaterorequal">es mayor o igual que</option>
+                                        <option style="display:none">Selecciona una operacion</option>
+                                        <option value="like" ng-selected="true">Contiene</option>
+                                        <option value="notlike">No contiene</option>
+                                        <option value="equals">Es igual a</option>
+                                        <option value="notequalto">Es distinto de</option>
+                                        <option value="less">Es menor que</option>
+                                        <option value="lessorequal">Es menor o igual que</option>
+                                        <option value="greater">Es mayor que</option>
+                                        <option value="greaterorequal">Es mayor o igual que</option>
                                     </select>
                                     <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filtervalue">
                                     <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter()" />

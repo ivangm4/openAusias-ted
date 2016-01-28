@@ -37,7 +37,7 @@ THE SOFTWARE.
             </div>
         </div>
 
-        <div id="titulo-group" class="form-group" 
+        <div id="nombre-group" class="form-group" 
              ng-class="{'has-error': (outerForm.nombre.$error.required || outerForm.nombre.$error.minlength) && !outerForm.nombre.$pristine}">
             <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
             <div class="control col-sm-8">
@@ -53,123 +53,44 @@ THE SOFTWARE.
             </div>
         </div>
 
-        <div id="contenido-group" class="form-group" 
-             ng-class="{'has-error': outerForm.apellidos.$error.required && !outerForm.apellidos.$pristine}">
-            <label class ="col-sm-2 control-label" for="apellidos">Apellidos:</label>
+        <div id="precio-group" class="form-group" 
+             ng-class="{'has-error': outerForm.precio.$error.required && !outerForm.precio.$pristine}">
+            <label class ="col-sm-2 control-label" for="precio">Precio:</label>
             <div class="control col-sm-9">
-                <input ng-model="obj.apellidos" 
+                <input ng-model="obj.precio" 
                        type="text" 
-                       id="apellidos"
-                       class="form-control" name="apellidos" size="15"
-                       placeholder="apellidos"
+                       id="precio"
+                       class="form-control" name="precio" size="15"
+                       placeholder="precio"
                        required>
-                <span class="help-block" ng-show="!outerForm.apellidos.$pristine && outerForm.apellidos.$error.required">El campo apellidos es obligatorio.</span>
-            </div>
-        </div>
-        
-        <div id="contenido-group" class="form-group" 
-             ng-class="{'has-error': outerForm.dni.$error.required && !outerForm.dni.$pristine}">
-            <label class ="col-sm-2 control-label" for="dni">DNI:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.dni" 
-                       type="text" 
-                       id="dni"
-                       class="form-control" name="dni" size="15"
-                       placeholder="dni"
-                       minlength="9"
-                       maxlength="9"
-                       required>
-                <span class="help-block" ng-show="!outerForm.dni.$pristine && outerForm.dni.$error.required">El campo dni es obligatorio.</span>
-                <span class="help-block" ng-show="!outerForm.dni.$pristine && outerForm.dni.$error.maxlength && outerForm.dni.$error.minlength">El campo dni debe tener 9 carácteres.</span>
-            </div>
-        </div>
-        
-        <div id="contenido-group" class="form-group" 
-             ng-class="{'has-error': outerForm.telefono.$error.required && !outerForm.telefono.$pristine}">
-            <label class ="col-sm-2 control-label" for="telefono">Teléfono:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.telefono" 
-                       type="text" 
-                       id="telefono"
-                       class="form-control" name="telefono" size="15"
-                       placeholder="telefono"
-                       minlength="9"
-                       maxlength="9"
-                       required>
-                <span class="help-block" ng-show="!outerForm.telefono.$pristine && outerForm.telefono.$error.required">El campo telefono es obligatorio.</span>
-                <span class="help-block" ng-show="!outerForm.telefono.$pristine && outerForm.telefono.$error.maxlength && outerForm.telefono.$error.minlength">El campo teléfono debe tener 9 carácteres.</span>
-            </div>
-        </div>
-        
-        <div id="contenido-group" class="form-group" 
-             ng-class="{'has-error': outerForm.login.$error.required && !outerForm.login.$pristine}">
-            <label class ="col-sm-2 control-label" for="login">Login:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.login" 
-                       type="text" 
-                       id="login"
-                       class="form-control" name="login" size="15"
-                       placeholder="login"
-                       maxlength="10"
-                       required>
-                <span class="help-block" ng-show="!outerForm.login.$pristine && outerForm.login.$error.required">El campo login es obligatorio.</span>
-                <span class="help-block" ng-show="!outerForm.login.$pristine && outerForm.login.$error.maxlength">El campo login debe tener como máxmo 10 carácteres.</span>
-            </div>
-        </div>
-        
-        <div id="contenido-group" class="form-group" 
-             ng-class="{'has-error': outerForm.password.$error.required && !outerForm.password.$pristine}">
-            <label class ="col-sm-2 control-label" for="password">Password:</label>
-            <div class="control col-sm-9">
-                <input ng-model="obj.password" 
-                       type="password" 
-                       id="password"
-                       class="form-control" name="password" size="15"
-                       placeholder="password"
-                       maxlength="10"
-                       required>
-                <span class="help-block" ng-show="!outerForm.password.$pristine && outerForm.password.$error.required">El campo password es obligatorio.</span>
-                <span class="help-block" ng-show="!outerForm.password.$pristine && outerForm.password.$error.maxlength">El campo password debe tener como máxmo 10 carácteres.</span>
-            </div>
-        </div>
-
-        <div id="alta-group" class="form-group">
-            <label class="col-sm-2 control-label" for="fechaNa">Fecha de Nacimiento:</label>
-            <div class="control col-sm-3">
-                <div class="input-group date" id="alta_group">
-                    <input type="text" class="form-control" starting-day="1" uib-datepicker-popup="dd/MM/yyyy" ng-model="obj.fechaNa" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions1" date-disabled="disabled(date, mode)" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" placeholder="Fecha de nacimiento" />
-                    <span class="input-group-addon" ng-click="open2()">
-                        <i class="glyphicon glyphicon-calendar"></i>
-                    </span>
-                </div>
+                <span class="help-block" ng-show="!outerForm.precio.$pristine && outerForm.precio.$error.required">El campo precio es obligatorio.</span>
             </div>
         </div>
         
         <!--- Claves externas --->
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="obj_tipoempleado">Tipo de empleado</label>
+        <div class="tipoproducto-group">
+            <label class="col-sm-2 control-label" for="obj_tipoproducto">Tipo de Producto:</label>
             <div class="control col-sm-3">
-                <div class="input-group foreign" id="obj_tipoempleado_group">
-                    <span class="input-group-addon" id="obj_tipoempleado_button">
-                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('tipoempleado')">
+                <div class="input-group foreign" id="obj_tipoproducto_group">
+                    <span class="input-group-addon" id="obj_tipoproducto_button">
+                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('tipoproducto')">
                         </span>
                     </span>
-                    <input ng-model="obj.obj_tipoempleado.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_tipoempleado" name="obj_tipoempleado" type="text">
+                    <input ng-model="obj.obj_tipoproducto.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_tipoproducto" name="obj_tipoproducto" type="text">
                     <span class="input-group-addon">
-                        <a href="#/tipoempleado/view/{{obj.obj_tipoempleado.id}}">
-                            <span>{{obj.obj_tipoempleado.cargo}}</span>
+                        <a href="#/tipoproducto/view/{{obj.obj_tipoempleado.id}}">
+                            <span>{{obj.obj_tipoproducto.descripcion}}</span>
                         </a>
                     </span>
                 </div>
             </div>
         </div>
 
-
         <div class="control-group text-right">
             <div class="controls">
                 <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                <a class="btn btn-default" ng-click="plist()">Ir al listado de empleados</a>
+                <a class="btn btn-default" ng-click="plist()">Ir al listado de productos</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>
         </div>
@@ -179,10 +100,10 @@ THE SOFTWARE.
     <div ng-show="result != null">
         <div class="alert alert-success" ng-show="result.status == 200">
             <h2>Se ha modificado el registro</h2>
-            <a ng-href="#/empleado/view/{{id}}">Ver el registro modificado</a>
+            <a class="btn btn-default" ng-href="#/producto/plist">Volver a la lista de productos</a>
         </div>
         <div class="alert alert-danger" ng-show="result.status != 200">
-            <h2>Error al modificar el empleado: no se ha modificado el empleado.</h2>
+            <h2>Error al modificar el producto: no se ha modificado el producto.</h2>
             <h3>Código: {{result.status}}</h3>
             <h3>Mensaje: {{result.message}}</h3>
         </div>

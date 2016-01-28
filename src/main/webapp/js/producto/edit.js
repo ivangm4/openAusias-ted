@@ -27,20 +27,19 @@
  */
 
 'use strict';
-moduloEmpleado.controller('EmpleadoEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
+
+moduloProducto.controller('ProductoEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
-        $scope.ob = 'empleado';
+        $scope.ob = 'producto';
         $scope.op = 'edit';
         $scope.result = null;
-        $scope.title = "Edición de empleado";
+        $scope.title = "Edición de producto";
         $scope.icon = "fa-file-text-o";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.obj = data.message;
-                //date conversion
-                $scope.obj.fechaNa = serverService.date_toDate($scope.obj.fechaNa);
             });
         } else {
             $scope.obj = sharedSpaceService.getObject();
@@ -53,16 +52,14 @@ moduloEmpleado.controller('EmpleadoEditController', ['$scope', '$routeParams', '
             $location.path('/' + foreignObjectName + '/selection/1/10');
         }
         $scope.save = function () {
-            var dateFechaNaAsString = $filter('date')($scope.obj.fechaNa, "dd/MM/yyyy");
-            $scope.obj.fechaNa = dateFechaNaAsString;
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             });
         };
-        $scope.$watch('obj.obj_tipoempleado.id', function () {
+        $scope.$watch('obj.obj_tipoproducto.id', function () {
             if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('tipoempleado', $scope.obj.obj_tipoempleado.id)).then(function (data2) {
-                    $scope.obj.obj_tipoempleado = data2.message;
+                serverService.getDataFromPromise(serverService.promise_getOne('tipoproducto', $scope.obj.obj_tipoproducto.id)).then(function (data2) {
+                    $scope.obj.obj_tipoproducto = data2.message;
                 });
             }
         });
@@ -73,7 +70,7 @@ moduloEmpleado.controller('EmpleadoEditController', ['$scope', '$routeParams', '
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/empleado/plist');
+            $location.path('/producto/plist');
         };
 
         //datepicker

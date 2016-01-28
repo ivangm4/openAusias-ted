@@ -39,6 +39,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
 import net.daw.dao.implementation.EmpleadoDao;
+import net.daw.helper.statics.EncodingUtilHelper;
 
 public class MesaBean implements GenericBean {
 
@@ -118,19 +119,16 @@ public class MesaBean implements GenericBean {
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += descripcion + ",";
+        strColumns += EncodingUtilHelper.quotate(descripcion) + ",";
         strColumns += id_empleado;
-
         return strColumns;
     }
 
     @Override
     public String toPairs() {
         String strPairs = "";
-        strPairs += "id=" + id + ",";
-        strPairs += "descripcion=" + descripcion + ",";
+        strPairs += "descripcion=" + EncodingUtilHelper.quotate(descripcion) + ",";
         strPairs += "id_empleado=" + id_empleado;
-
         return strPairs;
     }
 

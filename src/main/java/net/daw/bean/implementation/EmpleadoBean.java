@@ -191,15 +191,15 @@ public class EmpleadoBean implements GenericBean {
 
     public String getValues() {
         String strColumns = "";
-        strColumns += "id,";
-        strColumns += "nombre,";
-        strColumns += "apellidos,";
-        strColumns += "dni,";
-        strColumns += "telefono,";
-        strColumns += "fechaNa,";
-        strColumns += "login,";
-        strColumns += "password,";
-        strColumns += "id_tipoempleado";
+        strColumns += id + ",";
+        strColumns += EncodingUtilHelper.quotate(nombre) + ",";
+        strColumns += EncodingUtilHelper.quotate(apellidos) + ",";
+        strColumns += EncodingUtilHelper.quotate(dni) + ",";
+        strColumns += EncodingUtilHelper.quotate(telefono) + ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(fechaNa) + ",";
+        strColumns += EncodingUtilHelper.quotate(login) + ",";
+        strColumns += EncodingUtilHelper.quotate(password) + ",";
+        strColumns += id_tipoempleado;
         return strColumns;
     }
 
@@ -207,14 +207,13 @@ public class EmpleadoBean implements GenericBean {
     public String toPairs() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");        
         String strPairs = "";
-        //strPairs += "id=" + id + ",";
         strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
         strPairs += "apellidos=" +  EncodingUtilHelper.quotate(apellidos) + ",";
         strPairs += "dni=" +  EncodingUtilHelper.quotate(dni) + ",";
         strPairs += "telefono=" +  EncodingUtilHelper.quotate(telefono) + ",";
         strPairs += "fechaNa=" + EncodingUtilHelper.quotate(format.format(fechaNa)) + ",";
-        strPairs += "login=" + EncodingUtilHelper.quotate(format.format(login)) + ",";
-        strPairs += "password=" + EncodingUtilHelper.quotate(format.format(password)) + ",";
+        strPairs += "login=" + EncodingUtilHelper.quotate(login) + ",";
+        strPairs += "password=" + EncodingUtilHelper.quotate(password) + ",";
         strPairs += "id_tipoempleado=" + id_tipoempleado;
         return strPairs;
     }

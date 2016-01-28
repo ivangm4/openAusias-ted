@@ -99,15 +99,10 @@ THE SOFTWARE.
                             <div class="col-md-12 text-center">
                                 <p></p>
                                 <p>Campos visibles:</p>
-                                <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
-                                <input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre" >Nombre
-                                <input type="checkbox" ng-model="visibles.apellidos" ng-checked="visibles.apellidos">Apellidos
-                                <input type="checkbox" ng-model="visibles.dni" ng-checked="visibles.dni">DNI
-                                <input type="checkbox" ng-model="visibles.telefono" ng-checked="visibles.telefono">Teléfono
-                                <input type="checkbox" ng-model="visibles.fechaNa" ng-checked="visibles.fechaNa">Fecha Nacimiento
-                                <input type="checkbox" ng-model="visibles.login" ng-checked="visibles.login">Login
-                                <input type="checkbox" ng-model="visibles.password" ng-checked="visibles.password">Password
-                                <input type="checkbox" ng-model="visibles.id_tipoempleado" ng-checked="visibles.id_tipoempleado">Tipo Empleado                                                                                                                            
+                                <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Identificador
+                                <input type="checkbox" ng-model="visibles.fecha" ng-checked="visibles.fecha">Fecha
+                                <input type="checkbox" ng-model="visibles.hora" ng-checked="visibles.hora">Hora
+                                <input type="checkbox" ng-model="visibles.id_mesa" ng-checked="visibles.id_mesa">Mesa                                                                                                                            
                                 <p></p>
                             </div>
                         </div>
@@ -118,27 +113,22 @@ THE SOFTWARE.
                                 <p></p>
                                 <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm">
                                     <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
-                                        <option style="display:none">selecciona un campo</option>
+                                        <option style="display:none">Selecciona un campo</option>
                                         <option value="id">Identificador</option>
-                                        <option value="nombre">Nombre</option>
-                                        <option value="apellidos">Apellidos</option>
-                                        <option value="dni">DNI</option>
-                                        <option value="telefono">Teléfono</option>
-                                        <option value="fechaNa">Fecha Nacimiento</option> 
-                                        <option value="login">Login</option> 
-                                        <option value="password">Password</option> 
-                                        <option value="id_tipoempleado">Tipo Empleado</option>                                                 
+                                        <option value="fecha">Fecha</option>
+                                        <option value="hora">Hora</option>
+                                        <option value="id_mesa">Mesa</option>                                                 
                                     </select>
                                     <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
-                                        <option style="display:none">selecciona una operacion</option>
-                                        <option value="like" ng-selected="true">contiene</option>
-                                        <option value="notlike">no contiene</option>
-                                        <option value="equals">es igual a</option>
-                                        <option value="notequalto">es distinto de</option>
-                                        <option value="less">es menor que</option>
-                                        <option value="lessorequal">es menor o igual que</option>
-                                        <option value="greater">es mayor que</option>
-                                        <option value="greaterorequal">es mayor o igual que</option>
+                                        <option style="display:none">Selecciona una operacion</option>
+                                        <option value="like" ng-selected="true">Contiene</option>
+                                        <option value="notlike">No contiene</option>
+                                        <option value="equals">Es igual a</option>
+                                        <option value="notequalto">Es distinto de</option>
+                                        <option value="less">Es menor que</option>
+                                        <option value="lessorequal">Es menor o igual que</option>
+                                        <option value="greater">Es mayor que</option>
+                                        <option value="greaterorequal">Es mayor o igual que</option>
                                     </select>
                                     <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filtervalue">
                                     <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter()" />
@@ -182,52 +172,20 @@ THE SOFTWARE.
                         <a ng-show="visibles.id" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
 
                     </th>
-                    <th ng-show="visibles.nombre"  class="text-center">
-                        Nombre<br/>
-                        <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                    <th ng-show="visibles.fecha"  class="text-center">
+                        Fecha<br/>
+                        <a ng-show="visibles.fecha" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.fecha" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.apellidos"  class="text-center">
-                        Apellidos<br/>
-                        <a ng-show="visibles.apellidos" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.apellidos" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
+                    <th ng-show="visibles.hora"  class="text-center">
+                        Hora<br/>
+                        <a ng-show="visibles.hora" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.hora" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.dni" class="text-center">
-                        DNI<br/>
-                        <a ng-show="visibles.dni" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.dni" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                    </th>
-                    <th ng-show="visibles.telefono" class="text-center">
-                        Teléfono<br/>
-                        <a ng-show="visibles.telefono" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.telefono" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                    </th>
-                    <th ng-show="visibles.fechaNa" class="text-center"">
-                        Fecha Nacimiento<br/>
-                        <a ng-show="visibles.fechaNa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.fechaNa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                    </th>
-                    <th ng-show="visibles.login" class="text-center"">
-                        Login<br/>
-                        <a ng-show="visibles.login" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.login" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                    </th>
-                    <th ng-show="visibles.password" class="text-center"">
-                        Password<br/>
-                        <a ng-show="visibles.password" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.password" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                    </th>
-                    <th ng-show="visibles.id_tipoempleado" class="text-center">
-                        Tipo Empleado<br/>
-                        <a ng-show="visibles.id_tipoempleado" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.id_tipoempleado" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
+                    <th ng-show="visibles.id_mesa" class="text-center">
+                        Mesa<br/>
+                        <a ng-show="visibles.id_mesa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.id_mesa" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
                     <th  class="text-center">Acciones</th>
                 </tr>
@@ -235,23 +193,18 @@ THE SOFTWARE.
             <tbody>
                 <tr class="text-center" ng-repeat="obj in page| filter:searchText">
                     <td ng-show="visibles.id">{{obj.id}}</td>
-                    <td ng-show="visibles.nombre">{{obj.nombre}}</td>
-                    <td ng-show="visibles.apellidos">{{obj.apellidos}}</td>
-                    <td ng-show="visibles.dni">{{obj.dni}}</td>
-                    <td ng-show="visibles.telefono">{{obj.telefono}}</td>
-                    <td ng-show="visibles.fechaNa">{{obj.fechaNa}}</td>
-                    <td ng-show="visibles.login">{{obj.login}}</td>
-                    <td ng-show="visibles.password">{{obj.password}}</td>
-                    <td ng-show="visibles.id_tipoempleado"><a href="#/tipoempleado/view/{{obj.obj_tipoempleado.id}}">{{obj.obj_tipoempleado.cargo}}</a></td>
+                    <td ng-show="visibles.fecha">{{obj.fecha}}</td>
+                    <td ng-show="visibles.hora">{{obj.hora}}</td>
+                    <td ng-show="visibles.id_mesa"><a href="#/mesa/view/{{obj.obj_mesa.id}}">{{obj.obj_mesa.descripcion}}</a></td>
                     <td>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Acciones<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="btn btn-default action02" href="#/empleado/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
-                                <li><a class="btn btn-default action03" href="#/empleado/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
-                                <li><a class="btn btn-default action04" href="#/empleado/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
+                                <li><a class="btn btn-default action02" href="#/cuenta/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
+                                <li><a class="btn btn-default action03" href="#/cuenta/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
+                                <li><a class="btn btn-default action04" href="#/cuenta/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
                             </ul>
                         </div>
                     </td>

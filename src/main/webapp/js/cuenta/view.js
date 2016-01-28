@@ -27,11 +27,11 @@
  */
 'use strict';
 
-moduloEmpleado.controller('EmpleadoViewController', ['$scope', '$routeParams', 'serverService','$location',
+moduloCuenta.controller('CuentaViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
-        $scope.title = "Vista de empleado";
+        $scope.title = "Vista de cuenta";
         $scope.icon = "fa-file-text-o";
-        $scope.ob = 'empleado';
+        $scope.ob = 'cuenta';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
@@ -40,7 +40,7 @@ moduloEmpleado.controller('EmpleadoViewController', ['$scope', '$routeParams', '
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/empleado/plist');
+            $location.path('/cuenta/plist');
         };
         $scope.back = function () {
             window.history.back();

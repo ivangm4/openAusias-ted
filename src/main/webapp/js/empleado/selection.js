@@ -26,11 +26,22 @@
  * 
  */
 
-moduloTipoempleado.controller('TipoempleadoSelectionController', ['$scope', '$routeParams', 'serverService', 'sharedSpaceService', '$location',
+moduloEmpleado.controller('EmpleadoSelectionController', ['$scope', '$routeParams', 'serverService', 'sharedSpaceService', '$location',
     function ($scope, $routeParams, serverService, sharedSpaceService, $location) {
-        $scope.ob = "tipoempleado";
+        
+        $scope.visibles = {};
+        $scope.visibles.id = true;
+        $scope.visibles.nombre = true;
+        $scope.visibles.apellidos = true;
+        $scope.visibles.dni = true;
+        $scope.visibles.telefono = true;
+        $scope.visibles.login = true;
+        $scope.visibles.password = true;
+        $scope.visibles.id_tipoempleado = true;
+        
+        $scope.ob = "empleado";
         $scope.op = "selection";
-        $scope.title = "Selección de un tipo de empleado";
+        $scope.title = "Selección de un empleado";
         $scope.neighbourhood = 2;
         $scope.numpage = $routeParams.page;
         $scope.rpp = $routeParams.rpp;
@@ -125,7 +136,7 @@ moduloTipoempleado.controller('TipoempleadoSelectionController', ['$scope', '$ro
         };
 
         $scope.go = function (num) {
-            sharedSpaceService.getObject().obj_tipodocumento.id = num;
+            sharedSpaceService.getObject().obj_empleado.id = num;
             sharedSpaceService.setFase(2);
             $location.path(sharedSpaceService.getReturnLink());
         };

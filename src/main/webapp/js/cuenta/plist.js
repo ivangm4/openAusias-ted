@@ -29,23 +29,18 @@
 'use strict';
 /* Controllers */
 
-moduloEmpleado.controller('EmpleadoPListController', ['$scope', '$routeParams', 'serverService', '$location',
+moduloCuenta.controller('CuentaPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
 
         $scope.visibles = {};
         $scope.visibles.id = true;
-        $scope.visibles.nombre = true;
-        $scope.visibles.apellidos = true;
-        $scope.visibles.dni = true;
-        $scope.visibles.telefono = true;
-        $scope.visibles.fechaNa = true;
-        $scope.visibles.login = true;
-        $scope.visibles.password = true;
-        $scope.visibles.id_tipoempleado = true;
+        $scope.visibles.fecha = true;
+        $scope.visibles.hora = true;
+        $scope.visibles.id_mesa = true;
 
-        $scope.ob = "empleado";
+        $scope.ob = "cuenta";
         $scope.op = "plist";
-        $scope.title = "Listado de empleados";
+        $scope.title = "Listado de cuentas";
         $scope.icon = "fa-file-text-o";
         $scope.neighbourhood = 2;
 

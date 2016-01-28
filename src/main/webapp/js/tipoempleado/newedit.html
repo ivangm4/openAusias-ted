@@ -37,7 +37,7 @@ THE SOFTWARE.
             </div>
         </div>
 
-        <div id="titulo-group" class="form-group" 
+        <div id="cargo-group" class="form-group" 
              ng-class="{'has-error': (outerForm.cargo.$error.required || outerForm.cargo.$error.minlength) && !outerForm.cargo.$pristine}">
             <label class="col-sm-2 control-label" for="cargo">Cargo:</label>
             <div class="control col-sm-8">
@@ -66,7 +66,7 @@ THE SOFTWARE.
     <div ng-show="result != null">
         <div class="alert alert-success" ng-show="result.status == 200">
             <h2>Se ha modificado el registro</h2>
-            <a ng-href="#/tipoempleado/view/{{id}}">Ver el registro modificado</a>
+            <a class="btn btn-default" ng-href="#/tipoempleado/plist">Volver a la lista de tipos de empleados</a>
         </div>
         <div class="alert alert-danger" ng-show="result.status != 200">
             <h2>Error al modificar el tipo de empleado: no se ha modificado el tipo de empleado.</h2>

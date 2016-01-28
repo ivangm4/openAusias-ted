@@ -129,7 +129,7 @@ public class ProductoBean implements GenericBean {
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += nombre + ",";
+        strColumns += EncodingUtilHelper.quotate(nombre) + ",";
         strColumns += precio + ",";
         strColumns += id_tipoproducto;
         return strColumns;
@@ -139,7 +139,6 @@ public class ProductoBean implements GenericBean {
     public String toPairs() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");        
         String strPairs = "";
-        //strPairs += "id=" + id + ",";
         strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
         strPairs += "precio=" +  precio + ",";
         strPairs += "id_tipoproducto=" + id_tipoproducto;

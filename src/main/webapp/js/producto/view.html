@@ -29,42 +29,29 @@ THE SOFTWARE.
 <div class="panel-body">
     <div class="row-fluid">
         <div class="span6 offset3">                
-            <table class="table table-striped table-condensed">
+            <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
                 <thead>                
                     <tr>    
-                        <th>campo</th>
-                        <th>valor</th>
+                        <th>Campo</th>
+                        <th>Valor</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>id</td><td>{{bean.id}}</td></tr>       
-                    <tr><td>titulo</td><td>{{bean.titulo}}</td></tr> 
-                    <tr><td>contenido</td><td>{{bean.contenido| clipString}}</td></tr> 
-                    <tr><td>alta</td><td>{{bean.alta}}</td></tr> 
-                    <tr><td>cambio</td><td>{{bean.cambio}}</td></tr> 
-                    <tr><td>hits</td><td>{{bean.hits}}</td></tr> 
-                    <tr><td>etiquetas</td><td>{{bean.etiquetas}}</td></tr> 
+                    <tr><td>Identificador</td><td>{{bean.id}}</td></tr>       
+                    <tr><td>Nombre</td><td>{{bean.nombre}}</td></tr> 
+                    <tr><td>Precio</td><td>{{bean.precio}}</td></tr> 
                     <tr>
-                        <td>usuario</td>
+                        <td>Tipo de Producto</td>
                         <td>
-                            <a href="#/usuario/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.login}}</a>
+                            <a href="#/tipoproducto/view/{{bean.obj_tipoproducto.id}}">{{bean.obj_tipoproducto.descripcion}}</a>
                         </td>
                     </tr> 
-                    <tr>
-                        <td>tipo de documento</td>
-                        <td>
-                            <a href="#/tipodocumento/view/{{bean.obj_tipodocumento.id}}">{{bean.obj_tipodocumento.descripcion}}</a>
-                        </td>
-                    </tr> 
-                    <tr><td>publicado</td><td>{{bean.publicado}}</td></tr> 
-                    <tr><td>portada</td><td>{{bean.portada}}</td></tr> 
-                    <tr><td>destacado</td><td>{{bean.destacado}}</td></tr> 
                 </tbody>
             </table>  
             <div class="text-right" > 
-                <a class="btn btn-primary" href="#/documento/edit/{{bean.id}}">Editar</a>
-                <a class="btn btn-danger" href="#/documento/remove/{{bean.id}}">Borrar</a>
-                   <a class="btn btn-default" ng-click="plist()">Ir al listado de documentos</a>
+                <a class="btn btn-primary" href="#/producto/edit/{{bean.id}}">Editar</a>
+                <a class="btn btn-danger" href="#/producto/remove/{{bean.id}}">Borrar</a>
+                   <a class="btn btn-default" ng-click="plist()">Ir al listado de productos</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>
         </div>

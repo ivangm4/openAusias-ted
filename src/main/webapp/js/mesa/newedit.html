@@ -37,7 +37,7 @@ THE SOFTWARE.
             </div>
         </div>
 
-        <div id="titulo-group" class="form-group" 
+        <div id="descripcion-group" class="form-group" 
              ng-class="{'has-error': (outerForm.descripcion.$error.required || outerForm.descripcion.$error.minlength) && !outerForm.descripcion.$pristine}">
             <label class="col-sm-2 control-label" for="descripcion">Descripción:</label>
             <div class="control col-sm-8">
@@ -55,7 +55,7 @@ THE SOFTWARE.
 
         <!--- Claves externas --->
 
-        <div class="form-group">
+        <div class="empleado-group">
             <label class="col-sm-2 control-label" for="obj_empleado">Empleado</label>
             <div class="control col-sm-3">
                 <div class="input-group foreign" id="obj_empleado_group">
@@ -87,7 +87,7 @@ THE SOFTWARE.
     <div ng-show="result != null">
         <div class="alert alert-success" ng-show="result.status == 200">
             <h2>Se ha modificado el registro</h2>
-            <a ng-href="#/mesa/view/{{id}}">Ver el registro modificado</a>
+            <a class="btn btn-default" ng-href="#/mesa/plist">Volver a la lista de mesas</a>
         </div>
         <div class="alert alert-danger" ng-show="result.status != 200">
             <h2>Error al modificar la mesa: no se ha modificado la mesa.</h2>

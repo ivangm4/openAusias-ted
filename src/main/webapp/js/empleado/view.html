@@ -29,24 +29,24 @@ THE SOFTWARE.
 <div class="panel-body">
     <div class="row-fluid">
         <div class="span6 offset3">                
-            <table class="table table-striped table-condensed">
+            <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
                 <thead>                
                     <tr>    
-                        <th>campo</th>
-                        <th>valor</th>
+                        <th>Campo</th>
+                        <th>Valor</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>id</td><td>{{bean.id}}</td></tr>       
-                    <tr><td>nombre</td><td>{{bean.nombre}}</td></tr> 
-                    <tr><td>apellidos</td><td>{{bean.apellidos}}</td></tr> 
-                    <tr><td>dni</td><td>{{bean.dni}}</td></tr> 
-                    <tr><td>telefono</td><td>{{bean.telefono}}</td></tr> 
-                    <tr><td>fechanacimiento</td><td>{{bean.fechaNa}}</td></tr> 
-                    <tr><td>login</td><td>{{bean.login}}</td></tr> 
-                    <tr><td>password</td><td>{{bean.password}}</td></tr> 
+                    <tr><td>Identificador</td><td>{{bean.id}}</td></tr>       
+                    <tr><td>Nombre</td><td>{{bean.nombre}}</td></tr> 
+                    <tr><td>Apellidos</td><td>{{bean.apellidos}}</td></tr> 
+                    <tr><td>DNI</td><td>{{bean.dni}}</td></tr> 
+                    <tr><td>Teléfono</td><td>{{bean.telefono}}</td></tr> 
+                    <tr><td>Fecha de Nacimiento</td><td>{{bean.fechaNa}}</td></tr> 
+                    <tr><td>Login</td><td>{{bean.login}}</td></tr> 
+                    <tr><td>Password</td><td>{{bean.password}}</td></tr> 
                     <tr>
-                        <td>tipo de empleado</td>
+                        <td>Tipo de Empleado</td>
                         <td>
                             <a href="#/tipoempleado/view/{{bean.obj_tipoempleado.id}}">{{bean.obj_tipoempleado.cargo}}</a>
                         </td>

@@ -28,15 +28,15 @@
 
 'use strict';
 
-moduloTipoempleado.controller('TipoempleadoRemoveController', ['$scope', '$routeParams', 'serverService',
+moduloTipoproducto.controller('TipoproductoRemoveController', ['$scope', '$routeParams', 'serverService',
     function ($scope, $routeParams, serverService) {
         $scope.result = "";
         $scope.back = function () {
             window.history.back();
         };
-        $scope.ob = 'tipoempleado';
+        $scope.ob = 'tipoproducto';
         $scope.id = $routeParams.id;
-        $scope.title = "Borrado de un tipo de empleado";
+        $scope.title = "Borrado de un tipo de producto";
         $scope.icon = "fa-file-text-o";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
             $scope.bean = data.message;

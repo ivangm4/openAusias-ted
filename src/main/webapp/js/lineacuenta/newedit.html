@@ -37,9 +37,9 @@ THE SOFTWARE.
             </div>
         </div>
 
-        <div id="titulo-group" class="form-group" 
+        <div id="cantidadProducto-group" class="form-group" 
              ng-class="{'has-error': (outerForm.cantidadProducto.$error.required || outerForm.cantidadProducto.$error.minlength) && !outerForm.cantidadProducto.$pristine}">
-            <label class="col-sm-2 control-label" for="cantidadProducto">Cantidad Producto:</label>
+            <label class="col-sm-2 control-label" for="cantidadProducto">Cantidad del Producto:</label>
             <div class="control col-sm-8">
                 <input ng-model="obj.cantidadProducto"
                        type="number"
@@ -55,8 +55,8 @@ THE SOFTWARE.
    
         <!--- Claves externas --->
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="obj_cuenta">Cuenta</label>
+        <div class="cuenta-group">
+            <label class="col-sm-2 control-label" for="obj_cuenta">Cuenta:</label>
             <div class="control col-sm-3">
                 <div class="input-group foreign" id="obj_cuenta_group">
                     <span class="input-group-addon" id="obj_cuenta_button">
@@ -73,8 +73,8 @@ THE SOFTWARE.
             </div>
         </div>
         
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="obj_producto">Producto</label>
+        <div class="producto-group">
+            <label class="col-sm-2 control-label" for="obj_producto">Producto:</label>
             <div class="control col-sm-3">
                 <div class="input-group foreign" id="obj_producto_group">
                     <span class="input-group-addon" id="obj_producto_button">
@@ -95,7 +95,7 @@ THE SOFTWARE.
         <div class="control-group text-right">
             <div class="controls">
                 <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                <a class="btn btn-default" ng-click="plist()">Ir al listado de empleados</a>
+                <a class="btn btn-default" ng-click="plist()">Ir al listado de lineas de cuentas</a>
                 <a class="btn btn-default" ng-click="close()">Cerrar</a>
             </div>
         </div>
@@ -105,7 +105,7 @@ THE SOFTWARE.
     <div ng-show="result != null">
         <div class="alert alert-success" ng-show="result.status == 200">
             <h2>Se ha modificado el registro</h2>
-            <a ng-href="#/lineacuenta/view/{{id}}">Ver el registro modificado</a>
+            <a class="btn btn-default" ng-href="#/lineacuenta/plist">Volver a la lista de líneas de cuentas</a>
         </div>
         <div class="alert alert-danger" ng-show="result.status != 200">
             <h2>Error al modificar la línea de cuenta: no se ha modificado la línea de cuenta.</h2>
