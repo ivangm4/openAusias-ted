@@ -61,7 +61,7 @@ THE SOFTWARE.
 
 
         <div id="contenido-group" class="form-group" 
-             ng-class="{'has-error': outerForm.contenido.$error.required && !outerForm.contenido.$pristine}">
+             ng-class="{'has-error': (outerForm.contenido.$error.required || outerForm.contenido.$error.minlength) && !outerForm.contenido.$pristine}">
             <label class ="col-sm-2 control-label" for="contenido">Contenido:</label>
             <div class="control col-sm-9">
                 <!-- <input ng-model="obj.contenido" type="text" id="contenido"
@@ -71,10 +71,12 @@ THE SOFTWARE.
                 <input ng-model="obj.contenido" 
                        type="text" 
                        id="contenido"
-                       class="form-control" name="contenido" size="15"
+                       class="form-control" 
+                       name="contenido" 
+                       size="15"
                        placeholder="contenido"
                        minlength="10"
-                       maxlength="20"
+                       maxlength="200"
                        required>
                 <span class="help-block" ng-show="!outerForm.contenido.$pristine && outerForm.contenido.$error.required">El campo contenido es obligatorio</span>
                 <span class="help-block" ng-show="!outerForm.contenido.$pristine && outerForm.contenido.$error.minlength">El campo contenido debe tener al menos 10 caracteres</span>
@@ -96,8 +98,22 @@ THE SOFTWARE.
             <label class="col-sm-2 control-label" for="alta">Fecha de alta:</label>
             <div class="control col-sm-3">
                 <div class="input-group date" id="alta_group">
-                    <input type="text" class="form-control" starting-day="1" uib-datepicker-popup="dd/MM/yyyy" ng-model="obj.alta" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions1" date-disabled="disabled(date, mode)" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" placeholder="Fecha de alta" />
-                    <span class="input-group-addon" ng-click="open2()">
+                    <input type="text" 
+                           class="form-control" 
+                           ng-model="obj.alta"
+                           placeholder="Fecha de alta"
+                           starting-day="1" 
+                           uib-datepicker-popup="dd/MM/yyyy"                             
+                           is-open="popup1.opened" 
+                           min-date="minDate" 
+                           max-date="maxDate" 
+                           datepicker-options="dateOptions1" 
+                           date-disabled="disabled(date, mode)"                            
+                           close-text="Cerrar" 
+                           alt-input-formats="altInputFormats" 
+                           ng-required="true" 
+                           />
+                    <span class="input-group-addon" ng-click="open1()">
                         <i class="glyphicon glyphicon-calendar"></i>
                     </span>
                 </div>
@@ -109,8 +125,22 @@ THE SOFTWARE.
             <label class="col-sm-2 control-label" for="cambio">Fecha de modificación:</label>
             <div class="control col-sm-3">
                 <div class="input-group date" id="cambio_group">
-                    <input type="text" class="form-control" starting-day="1" uib-datepicker-popup="dd/MM/yyyy" ng-model="obj.cambio" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" placeholder="Fecha de último cambio" />
-                    <span class="input-group-addon" ng-click="open1()">
+                    <input type="text" 
+                           class="form-control" 
+                           ng-model="obj.cambio" 
+                           placeholder="Fecha de último cambio"
+                           starting-day="1" 
+                           uib-datepicker-popup="dd/MM/yyyy"                            
+                           is-open="popup2.opened" 
+                           min-date="minDate" 
+                           max-date="maxDate" 
+                           datepicker-options="dateOptions2" 
+                           date-disabled="disabled(date, mode)"                             
+                           close-text="Cerrar" 
+                           alt-input-formats="altInputFormats" 
+                           ng-required="true"                           
+                           />
+                    <span class="input-group-addon" ng-click="open2()">
                         <i class="glyphicon glyphicon-calendar"></i>
                     </span>
                 </div>
@@ -119,20 +149,26 @@ THE SOFTWARE.
 
 
         <div id="hits-group" class="form-group"
-             ng-class="{'has-error': (outerForm.hits.$error.required || outerForm.hits.$error.pattern || outerForm.hits.$error.lowerThan) && !outerForm.hits.$pristine}">
+             ng-class="{'has-error': (outerForm.hits.$error.required
+                                 || outerForm.hits.$error.validatemin
+                                 || outerForm.hits.$error.validatemax
+                                 || outerForm.hits.$error.pattern
+                                 || outerForm.hits.$error.numbersOnly)
+                                 && !outerForm.hits.$pristine}">
             <label class="col-sm-2 control-label" for="hits">Hits:</label>
             <div class="control col-sm-3">
-                <input 
-                    ng-model="obj.hits" 
-                    type="text" 
-                    id="hits" 
-                    class="form-control" 
-                    name="hits" 
-                    size="15" 
-                    placeholder="hits"
-                    ng-pattern="/^\d+$/"
-                    lowerThan="40"
-                    required>
+                <input type="text" 
+                       ng-model="obj.hits"                     
+                       id="hits" 
+                       class="form-control" 
+                       name="hits" 
+                       size="15" 
+                       placeholder="hits"
+                       ng-pattern="/^\d+$/"
+                       numbersOnly
+                       validatemin="1" 
+                       validatemax="10"
+                       required>
                 <span class="help-block" ng-show="!outerForm.hits.$pristine && outerForm.hits.$error.required">El campo contenido es obligatorio</span>
                 <span class="help-block" ng-show="!outerForm.hits.$pristine && outerForm.hits.$error.pattern">El campo contenido debe ser un número entero</span>
                 <span class="help-block" ng-show="!outerForm.hits.$pristine && outerForm.hits.$error.lowerThan">El campo contenido debe ser menor que 40</span>
@@ -140,8 +176,8 @@ THE SOFTWARE.
 
             </div>
         </div>
-        
-   
+
+
         <!--
         <saludo a="persona">
         -->
@@ -156,9 +192,7 @@ THE SOFTWARE.
                     </span>
                     <input ng-model="obj.obj_usuario.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_usuario" name="obj_usuario" type="text" size="5" maxlength="5">
                     <span class="input-group-addon">
-                        <a href="#/usuario/view/{{obj.obj_usuario.id}}">
-                            <span>{{obj.obj_usuario.login}} ({{obj.obj_usuario.ciudad}})</span>
-                        </a>
+                        <linkusuario source="obj.obj_usuario"></linkusuario>                       
                     </span>
                 </div>
             </div>
@@ -173,7 +207,8 @@ THE SOFTWARE.
                         <span class="glyphicon glyphicon-search" ng-click="chooseOne('tipodocumento')">
                         </span>
                     </span>
-                    <input ng-model="obj.obj_tipodocumento.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_tipodocumento" name="obj_tipodocumento" type="text" size="5" maxlength="5">
+                    <input 
+                        ng-model="obj.obj_tipodocumento.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_tipodocumento" name="obj_tipodocumento" type="text" size="5" maxlength="5">
                     <span class="input-group-addon">
                         <a href="#/tipodocumento/view/{{obj.obj_tipodocumento.id}}">
                             <span>{{obj.obj_tipodocumento.descripcion}}</span>
@@ -227,13 +262,27 @@ THE SOFTWARE.
     </form>
     <div ng-show="result != null">
         <div class="alert alert-success" ng-show="result.status == 200">
-            <h2>Se ha modificado el registro</h2>
-            <a ng-href="#/documento/view/{{id}}">Ver el registro modificado</a>
+            <div ng-show="op == 'edit'">
+                <h2>Se ha modificado el registro</h2>
+                <a ng-href="#/documento/view/{{id}}">Ver el registro modificado</a>
+            </div>
+            <div ng-show="op == 'new'">
+                <h2>Se ha creado el registro</h2>
+                <a ng-href="#/documento/view/{{result.message}}">Ver el registro creado</a>
+            </div>                        
         </div>
         <div class="alert alert-danger" ng-show="result.status != 200">
-            <h2>Error al modificar el documento: no se ha modificado el documento</h2>
-            <h3>Código: {{result.status}}</h3>
-            <h3>Mensaje: {{result.message}}</h3>
+            <div ng-show="op == 'edit'">
+                <h2>Error al modificar el documento: no se ha modificado el documento</h2>
+                <h3>Código: {{result.status}}</h3>
+                <h3>Mensaje: {{result.message}}</h3>                
+            </div>
+            <div ng-show="op == 'new'">
+                <h2>Error al crear el documento: no se ha creado el documento</h2>
+                <h3>Código: {{result.status}}</h3>
+                <h3>Mensaje: {{result.message}}</h3>                
+            </div>
+
         </div>
     </div>
 </div>

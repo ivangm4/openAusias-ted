@@ -104,15 +104,130 @@ angular.module('Directives', [])
 
 
 
-//        .directive('saludo', function () {
-//            return {
-//                restrict: 'E',
-//                template: 'Hola {{ who.nombre }}!!! --- Hola',
-//                scope: {
-//                    who: "=a"
+
+
+
+
+//    
+
+//angular.module('Directives', [])
+//        .directive('validInteger', function () {
+//            return{
+//                require: "ngModel",
+//                link: function (scope, elm, attrs, ctrl) {
+//
+//                    var regex = /^\d{2,4}(\.\d{1,2})?$/;
+//                    ctrl.$parsers.unshift(function (viewValue) {
+//                        var floatValue = parseFloat(viewValue);
+//                        if (floatValue >= 50 && floatValue <= 5000 && regex.test(viewValue)) {
+//                            ctrl.$setValidity('validPrice', true);
+//                            //return viewValue;
+//                        } else {
+//                            ctrl.$setValidity('validPrice', false);
+//                        }
+//                        return viewValue;
+//                    });
 //                }
-//            }
+//            };
+//        });
+
+
+//        .directive('numbersOnly', function () {
+//            return {
+//                require: 'ngModel',
+//                link: function (scope, element, attrs, modelCtrl) {
+//                    modelCtrl.$parsers.push(function (inputValue) {
+//                        // this next if is necessary for when using ng-required on your input. 
+//                        // In such cases, when a letter is typed first, this parser will be called
+//                        // again, and the 2nd time, the value will be undefined
+//                        if (inputValue == undefined)
+//                            return ''
+//                        var transformedInput = inputValue.replace(/[^0-9]/g, '');
+//                        console.log("inputValue" + inputValue);
+//                        if (parseInt(inputValue) > 200 || parseInt(inputValue) < 5) {
+//                            return '';
+//                        }
+//                        if (transformedInput != inputValue) {
+//                            modelCtrl.$setViewValue(transformedInput);
+//                            modelCtrl.$render();
+//                        }
+//
+//                        return transformedInput;
+//                    });
+//                }
+//            };
 //        })
+
+        .directive('linkusuario', function () {
+            return {
+                restrict: 'E',
+                template: '<a ng-show="obj.id" href="#/usuario/view/{{obj.id}}">{{obj.id}} - {{obj.login}} ({{obj.ciudad}})</a>',
+                scope: {
+                    obj: "=source"
+                }
+            }
+        })
+        .directive('linktipodocumento', function () {
+            return {
+                restrict: 'E',
+                template: '<a ng-show="obj.id" href="#/tipodocumento/view/{{obj.id}}">{{obj.id}}-({{obj.descripcion}})</a>',
+                scope: {
+                    obj: "=source"
+                }
+            }
+        })
+
+
+        .directive('validatemin', function () {
+            return {
+                restrict: 'A',
+                require: 'ngModel',
+                link: function (scope, elem, attr, ctrl) {
+                    scope.$watch(attr.validatemin, function () {
+                        ctrl.$setViewValue(ctrl.$viewValue);
+                    });
+                    var minValidator = function (value) {
+                        var min = scope.$eval(attr.validatemin) || 0;
+                        if (value && value < min) {
+                            ctrl.$setValidity('validatemin', false);
+                            return undefined;
+                        } else {
+                            ctrl.$setValidity('validatemin', true);
+                            return value;
+                        }
+                    };
+
+                    ctrl.$parsers.push(minValidator);
+                    ctrl.$formatters.push(minValidator);
+                }
+            };
+        })
+
+        .directive('validatemax', function () {
+            return {
+                restrict: 'A',
+                require: 'ngModel',
+                link: function (scope, elem, attr, ctrl) {
+                    scope.$watch(attr.validatemax, function () {
+                        ctrl.$setViewValue(ctrl.$viewValue);
+                    });
+                    var maxValidator = function (value) {
+                        var max = scope.$eval(attr.validatemax) || Infinity;
+                        if (value && value > max) {
+                            ctrl.$setValidity('validatemax', false);
+                            return undefined;
+                        } else {
+                            ctrl.$setValidity('validatemax', true);
+                            return value;
+                        }
+                    };
+
+                    ctrl.$parsers.push(maxValidator);
+                    ctrl.$formatters.push(maxValidator);
+                }
+            };
+        });
+
 
 
 
@@ -151,24 +266,3 @@ angular.module('Directives', [])
 //
 //            }
 //        ]);
-
-//angular.module('Directives', [])
-//        .directive('validInteger', function () {
-//            return{
-//                require: "ngModel",
-//                link: function (scope, elm, attrs, ctrl) {
-//
-//                    var regex = /^\d{2,4}(\.\d{1,2})?$/;
-//                    ctrl.$parsers.unshift(function (viewValue) {
-//                        var floatValue = parseFloat(viewValue);
-//                        if (floatValue >= 50 && floatValue <= 5000 && regex.test(viewValue)) {
-//                            ctrl.$setValidity('validPrice', true);
-//                            //return viewValue;
-//                        } else {
-//                            ctrl.$setValidity('validPrice', false);
-//                        }
-//                        return viewValue;
-//                    });
-//                }
-//            };
-//        });

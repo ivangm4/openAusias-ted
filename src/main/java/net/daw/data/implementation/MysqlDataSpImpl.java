@@ -223,7 +223,7 @@ public class MysqlDataSpImpl implements DataInterface {
         ResultSet oResultSet = null;
         try {
             oStatement = (Statement) connection.createStatement();
-            String strNewSqlDataSource = "SELECT COUNT(*) " + strSqlSelectDataOrigin.substring(strSqlSelectDataOrigin.indexOf("from"), strSqlSelectDataOrigin.length());
+            String strNewSqlDataSource = "SELECT COUNT(*) " + strSqlSelectDataOrigin.substring(strSqlSelectDataOrigin.toLowerCase().indexOf("from"), strSqlSelectDataOrigin.length());
             oStatement = (Statement) connection.createStatement();
             oResultSet = oStatement.executeQuery(strNewSqlDataSource);
             while (oResultSet.next()) {
@@ -283,7 +283,7 @@ public class MysqlDataSpImpl implements DataInterface {
         Statement oStatement = null;
         try {
             oStatement = (Statement) connection.createStatement();
-            String strSQL = "SELECT COUNT(*) " + strSqlSelectDataOrigin.substring(strSqlSelectDataOrigin.indexOf("from"), strSqlSelectDataOrigin.length());
+            String strSQL = "SELECT COUNT(*) " + strSqlSelectDataOrigin.substring(strSqlSelectDataOrigin.toLowerCase().indexOf("from"), strSqlSelectDataOrigin.length());
             oResultSet = oStatement.executeQuery(strSQL);
             while (oResultSet.next()) {
                 intResult = oResultSet.getInt("COUNT(*)");

@@ -27,66 +27,45 @@
  */
 
 'use strict';
-moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
+moduloEmpleado.controller('EmpleadoEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter) {
-
-        $scope.ob = 'documento';
-        $scope.op = 'new';
-
-        $scope.title = "Creación de un nuevo documento";
-        $scope.icon = "fa-file-text-o";
-
+        $scope.obj = null;
+        $scope.id = $routeParams.id;
+        $scope.ob = 'empleado';
+        $scope.op = 'edit';
         $scope.result = null;
-
-        $scope.obj = {};
-        $scope.obj.obj_tipodocumento = {"id": 0};
-        $scope.obj.obj_usuario = {"id": 0};
-
+        $scope.title = "Edición de empleado";
+        $scope.icon = "fa-file-text-o";
         if (sharedSpaceService.getFase() == 0) {
-            if ($routeParams.tipodocumento && $routeParams.tipodocumento > 0) {
-                $scope.obj.obj_tipodocumento.id = $routeParams.tipodocumento;
-            }
-            if ($routeParams.usuario && $routeParams.usuario > 0) {
-                $scope.obj.obj_usuario.id = $routeParams.usuario;
-            }
+            serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
+                $scope.obj = data.message;
+                //date conversion
+                $scope.obj.fechaNa = serverService.date_toDate($scope.obj.fechaNa);
+            });
         } else {
             $scope.obj = sharedSpaceService.getObject();
             sharedSpaceService.setFase(0);
         }
-
         $scope.chooseOne = function (foreignObjectName) {
             sharedSpaceService.setObject($scope.obj);
-            sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
+            sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op + '/' + $scope.id);
             sharedSpaceService.setFase(1);
             $location.path('/' + foreignObjectName + '/selection/1/10');
         }
-
         $scope.save = function () {
-            //var dateAltaAsString = $filter('date')($scope.obj.alta, "dd/MM/yyyy");
-            //var dateCambioAsString = $filter('date')($scope.obj.cambio, "dd/MM/yyyy");
-            //$scope.obj.alta = dateAltaAsString;
-            //$scope.obj.cambio = dateCambioAsString;
-            //console.log({json: JSON.stringify(serverService.array_identificarArray($scope.obj))});            
+            var dateFechaNaAsString = $filter('date')($scope.obj.fechaNa, "dd/MM/yyyy");
+            $scope.obj.fechaNa = dateFechaNaAsString;
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             });
         };
-
-        $scope.$watch('obj.obj_tipodocumento.id', function () {
+        $scope.$watch('obj.obj_tipoempleado.id', function () {
             if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('cuenta', $scope.obj.obj_cuenta.id)).then(function (data2) {
-                    $scope.obj.obj_cuenta = data2.message;
+                serverService.getDataFromPromise(serverService.promise_getOne('tipoempleado', $scope.obj.obj_tipoempleado.id)).then(function (data2) {
+                    $scope.obj.obj_tipoempleado = data2.message;
                 });
             }
         });
-        $scope.$watch('obj.obj_producto.id', function () {
-            if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('producto', $scope.obj.obj_producto.id)).then(function (data2) {
-                    $scope.obj.obj_producto = data2.message;
-                });
-            }
-        });
-
         $scope.back = function () {
             window.history.back();
         };
@@ -94,43 +73,27 @@ moduloDocumento.controller('DocumentoNewController', ['$scope', '$routeParams', 
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/lineacuenta/plist');
+            $location.path('/empleado/plist');
         };
 
-        //datepickers
-        $scope.minDate = new Date(2016, 0, 1);
-        $scope.maxDate = new Date(2019, 11, 31);
-
-        //datepicker 1 (fecha de alta)
+        //datepicker
         $scope.open1 = function () {
             $scope.popup1.opened = true;
         };
         $scope.popup1 = {
             opened: false
         };
-        $scope.dateOptions1 = {
+        $scope.disabled = function (date, mode) {
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        };
+        $scope.dateOptions = {
             formatYear: 'yyyy',
             startingDay: 1
         };
-
-        //datepicker 2 (fecha de alta)
         $scope.open2 = function () {
             $scope.popup2.opened = true;
         };
         $scope.popup2 = {
             opened: false
         };
-        $scope.dateOptions2 = {
-            formatYear: 'yyyy',
-            startingDay: 1
-        };
-
-
-//        $scope.disabled = function (date, mode) {
-//            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-//        };
-
-
-       
-
     }]);

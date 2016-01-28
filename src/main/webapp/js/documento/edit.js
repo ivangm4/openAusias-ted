@@ -88,30 +88,36 @@ moduloDocumento.controller('DocumentoEditController', ['$scope', '$routeParams',
         };
 
 
-        //datepicker
+       //datepickers
+        $scope.minDate = new Date(2016, 0, 1);
+        $scope.maxDate = new Date(2019, 11, 31);
+
+        //datepicker 1 (fecha de alta)
         $scope.open1 = function () {
             $scope.popup1.opened = true;
         };
         $scope.popup1 = {
             opened: false
         };
-        $scope.disabled = function (date, mode) {
-            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-        };
-        $scope.dateOptions = {
+        $scope.dateOptions1 = {
             formatYear: 'yyyy',
             startingDay: 1
         };
+
+        //datepicker 2 (fecha de alta)
         $scope.open2 = function () {
             $scope.popup2.opened = true;
         };
         $scope.popup2 = {
             opened: false
         };
+        $scope.dateOptions2 = {
+            formatYear: 'yyyy',
+            startingDay: 1
+        };
 
-//        $scope.persona = {
-//            nombre: 'Pepe',
-//            apellido: 'Rojo',
-//            edad: 11
-//        }
+
+//        $scope.disabled = function (date, mode) {
+//            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+//        };
     }]);
