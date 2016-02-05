@@ -97,8 +97,9 @@ THE SOFTWARE.
                                 <p>Campos visibles:</p>
                                 <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Identificador
                                 <input type="checkbox" ng-model="visibles.fecha" ng-checked="visibles.fecha">Fecha
-                                <input type="checkbox" ng-model="visibles.hora" ng-checked="visibles.hora">Hora
+                                <input type="checkbox" ng-model="visibles.pagada" ng-checked="visibles.pagada">Pagada
                                 <input type="checkbox" ng-model="visibles.id_mesa" ng-checked="visibles.id_mesa">Mesa
+                                <input type="checkbox" ng-model="visibles.id_empleado" ng-checked="visibles.id_empleado">Empleado
                                 <p></p>
                             </div>
                         </div>
@@ -113,8 +114,9 @@ THE SOFTWARE.
                                         <option style="display:none">Selecciona un campo</option>                                    
                                         <option value="id">Identificador</option>
                                         <option value="fecha">Fecha</option>
-                                        <option value="hora">Hora</option>
+                                        <option value="pagada">Pagada</option>
                                         <option value="id_mesa">Mesa</option>
+                                        <option value="id_empleado">Empleado</option>
                                     </select>
                                     <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
                                         <option style="display:none">Selecciona una operacion</option>
@@ -171,16 +173,21 @@ THE SOFTWARE.
                         Fecha<br/>
                         <a ng-show="visibles.fecha" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.fecha" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
-                    <th ng-show="visibles.hora" class="text-center">
-                        Hora<br/>
-                        <a ng-show="visibles.hora" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=password&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.hora" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=password&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>                 
+                    </th> 
+                    <th ng-show="visibles.pagada" class="text-center">
+                        Pagada<br/>
+                        <a ng-show="visibles.pagada" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.pagada" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                    </th> 
                     <th ng-show="visibles.id_mesa" class="text-center">
                         Mesa<br/>
                         <a ng-show="visibles.id_mesa"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.id_mesa"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                    </th>
+                    <th ng-show="visibles.id_empleado" class="text-center">
+                        Empleado<br/>
+                        <a ng-show="visibles.id_empleado"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a ng-show="visibles.id_empleado"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
                     <th  class="text-center">
                         Acciones
@@ -191,8 +198,9 @@ THE SOFTWARE.
                 <tr ng-repeat="obj in page" class="text-center">
                     <td ng-show="visibles.id">{{obj.id}}</td>
                     <td ng-show="visibles.fecha">{{obj.fecha}}</td>
-                    <td ng-show="visibles.hora">{{obj.hora}}</td>
+                    <td ng-show="visibles.pagada">{{obj.pagada}}</td>
                     <td ng-show="visibles.id_mesa"><a href="#/mesa/view/{{obj.obj_mesa.id}}">{{obj.obj_mesa.descripcion}}</a></td>
+                    <td ng-show="visibles.id_empleado"><a href="#/empleado/view/{{obj.obj_empleado.id}}">{{obj.obj_empleado.nombre}}</a></td>
                     <td>
                         <div class="btn-group" role="group" aria-label="seleccionar">
                             <a class="btn btn-default action02" ng-click="go(obj.id)"><i class="fa fa-check fa-2g"></i> Seleccionar</a>

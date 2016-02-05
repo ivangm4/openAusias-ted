@@ -97,7 +97,6 @@ THE SOFTWARE.
                                 <p>Campos visibles:</p>
                                 <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
                                 <input type="checkbox" ng-model="visibles.descripcion" ng-checked="visibles.descripcion">Descripción
-                                <input type="checkbox" ng-model="visibles.id_empleado" ng-checked="visibles.id_empleado">Empleado
                                 <p></p>
                             </div>
                         </div>
@@ -112,7 +111,6 @@ THE SOFTWARE.
                                         <option style="display:none">Selecciona un campo</option>                                    
                                         <option value="id">Identificador</option>
                                         <option value="descripcion">Descripción</option>
-                                        <option value="id_empleado">Empleado</option>
                                     </select>
                                     <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
                                         <option style="display:none">Selecciona una operacion</option>
@@ -170,21 +168,15 @@ THE SOFTWARE.
                         <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.id_empleado" class="text-center">
-                        Empleado<br/>
-                        <a ng-show="visibles.id_empleado"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.id_empleado"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
                     <th  class="text-center">
                         Acciones
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="obj in page">
-                    <td ng-show="visibles.id" class="text-right">{{obj.id}}</td>
+                <tr ng-repeat="obj in page" class="text-center">
+                    <td ng-show="visibles.id">{{obj.id}}</td>
                     <td ng-show="visibles.descripcion">{{obj.descripcion}}</td>
-                    <td ng-show="visibles.id_empleado"><a href="#/empleado/view/{{obj.id_empleado.id}}">{{obj.id_empleado.nombre}}</a></td>
                     <td>
                         <div class="btn-group" role="group" aria-label="seleccionar">
                             <a class="btn btn-default action02" ng-click="go(obj.id)"><i class="fa fa-check fa-2g"></i> Seleccionar</a>

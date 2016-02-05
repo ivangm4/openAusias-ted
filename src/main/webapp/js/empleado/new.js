@@ -36,7 +36,7 @@ moduloEmpleado.controller('EmpleadoNewController', ['$scope', '$routeParams', '$
         $scope.op = 'new';
         $scope.result = null;
         $scope.title = "Edición de empleado";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-users";
         $scope.obj = {};
         $scope.obj.obj_tipoempleado = {"id": 0};
         if (sharedSpaceService.getFase() == 0) {

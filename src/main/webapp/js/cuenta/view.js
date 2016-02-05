@@ -30,7 +30,7 @@
 moduloCuenta.controller('CuentaViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
         $scope.title = "Vista de cuenta";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-list";
         $scope.ob = 'cuenta';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

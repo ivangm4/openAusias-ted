@@ -31,7 +31,7 @@
 moduloTipoempleado.controller('TipoempleadoViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
         $scope.title = "Vista de tipo de empleado";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-user-secret";
         $scope.ob = 'tipoempleado';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

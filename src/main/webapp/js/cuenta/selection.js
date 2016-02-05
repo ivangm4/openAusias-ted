@@ -32,8 +32,9 @@ moduloCuenta.controller('CuentaSelectionController', ['$scope', '$routeParams', 
         $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.fecha = true;
-        $scope.visibles.hora = true;
+        $scope.visibles.pagada = true;
         $scope.visibles.id_mesa = true;
+        $scope.visibles.id_empleado = true;
         
         $scope.ob = "cuenta";
         $scope.op = "selection";

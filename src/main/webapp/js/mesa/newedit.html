@@ -53,27 +53,6 @@ THE SOFTWARE.
             </div>
         </div>
 
-        <!--- Claves externas --->
-
-        <div class="empleado-group">
-            <label class="col-sm-2 control-label" for="obj_empleado">Empleado</label>
-            <div class="control col-sm-3">
-                <div class="input-group foreign" id="obj_empleado_group">
-                    <span class="input-group-addon" id="obj_empleado_button">
-                        <span class="glyphicon glyphicon-search" ng-click="chooseOne('empleado')">
-                        </span>
-                    </span>
-                    <input ng-model="obj.obj_empleado.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_empleado" name="obj_empleado" type="text">
-                    <span class="input-group-addon">
-                        <a href="#/empleado/view/{{obj.obj_empleado.id}}">
-                            <span>{{obj.obj_empleado.nombre}}</span>
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-
         <div class="control-group text-right">
             <div class="controls">
                 <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>

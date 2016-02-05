@@ -36,7 +36,7 @@ moduloProducto.controller('ProductoEditController', ['$scope', '$routeParams', '
         $scope.op = 'edit';
         $scope.result = null;
         $scope.title = "Edición de producto";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-cutlery";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.obj = data.message;

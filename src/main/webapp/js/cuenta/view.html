@@ -40,11 +40,17 @@ THE SOFTWARE.
                 <tbody>
                     <tr><td>Identificador</td><td>{{bean.id}}</td></tr>       
                     <tr><td>Fecha</td><td>{{bean.fecha}}</td></tr>
-                    <tr><td>Hora</td><td>{{bean.hora}}</td></tr> 
+                    <tr><td>Pagada</td><td>{{bean.pagada}}</td></tr>
                     <tr>
                         <td>Mesa</td>
                         <td>
                             <a href="#/mesa/view/{{bean.obj_mesa.id}}">{{bean.obj_mesa.descripcion}}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Empleado</td>
+                        <td>
+                            <a href="#/empleado/view/{{bean.obj_empleado.id}}">{{bean.obj_empleado.nombre}}</a>
                         </td>
                     </tr>
                 </tbody>

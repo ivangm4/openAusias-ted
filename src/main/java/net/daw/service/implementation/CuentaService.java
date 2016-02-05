@@ -34,6 +34,7 @@
 package net.daw.service.implementation;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +57,8 @@ import net.daw.service.publicinterface.ViewServiceInterface;
 public class CuentaService implements TableServiceInterface, ViewServiceInterface {
 
     protected HttpServletRequest oRequest = null;
+    
+    Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd HH:mm:ss").create();
 
     public CuentaService(HttpServletRequest request) {
         oRequest = request;
@@ -111,8 +114,7 @@ public class CuentaService implements TableServiceInterface, ViewServiceInterfac
                 CuentaDao oCuentaDao = new CuentaDao(oConnection);
                 CuentaBean oCuentaBean = new CuentaBean(id);
                 oCuentaBean = oCuentaDao.get(oCuentaBean, AppConfigurationHelper.getJsonDepth());
-                Gson gson = AppConfigurationHelper.getGson();
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(oCuentaBean));
+                data = JsonMessage.getJson("200", gson.toJson(oCuentaBean));
             } catch (Exception ex) {
                 ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
             } finally {
@@ -144,7 +146,7 @@ public class CuentaService implements TableServiceInterface, ViewServiceInterfac
                 oConnection = oDataConnectionSource.newConnection();
                 CuentaDao oCuentaDao = new CuentaDao(oConnection);
                 ArrayList<CuentaBean> arrBeans = oCuentaDao.getAll(alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+                data = JsonMessage.getJson("200", gson.toJson(arrBeans));
             } catch (Exception ex) {
                 ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
             } finally {
@@ -176,7 +178,7 @@ public class CuentaService implements TableServiceInterface, ViewServiceInterfac
                 oConnection = oDataConnectionSource.newConnection();
                 CuentaDao oCuentaDao = new CuentaDao(oConnection);
                 List<CuentaBean> arrBeans = oCuentaDao.getPage(intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+                data = JsonMessage.getJson("200", gson.toJson(arrBeans));
             } catch (Exception ex) {
                 ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
             } finally {
@@ -289,7 +291,8 @@ public class CuentaService implements TableServiceInterface, ViewServiceInterfac
                 oConnection.setAutoCommit(false);
                 CuentaDao oCuentaDao = new CuentaDao(oConnection);
                 CuentaBean oCuentaBean = new CuentaBean();
-                oCuentaBean = AppConfigurationHelper.getGson().fromJson(jason, oCuentaBean.getClass());
+                oCuentaBean = gson.fromJson(jason, oCuentaBean.getClass());
+                //oCuentaBean = AppConfigurationHelper.getGson().fromJson(jason, oCuentaBean.getClass());
                 if (oCuentaBean != null) {
                     Integer iResult = oCuentaDao.set(oCuentaBean);
                     if (iResult >= 1) {

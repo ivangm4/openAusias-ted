@@ -42,7 +42,7 @@ moduloLineacuenta.controller('LineacuentaPListController', ['$scope', '$routePar
         $scope.ob = "lineacuenta";
         $scope.op = "plist";
         $scope.title = "Listado de líneas de cuenta";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-indent";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

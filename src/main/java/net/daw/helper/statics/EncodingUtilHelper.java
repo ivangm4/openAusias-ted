@@ -98,7 +98,13 @@ public class EncodingUtilHelper {
     }
 
     public static String stringifyAndQuotate(Date s) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        String value = format.format(s);
+        return "\"" + value + "\"";
+    }
+    
+    public static String stringifyAndQuotateCuenta(Date s) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String value = format.format(s);
         return "\"" + value + "\"";
     }

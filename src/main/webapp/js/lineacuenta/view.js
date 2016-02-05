@@ -30,7 +30,7 @@
 moduloLineacuenta.controller('LineacuentaViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
         $scope.title = "Vista de línea de cuenta";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-indent";
         $scope.ob = 'lineacuenta';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

@@ -100,8 +100,7 @@ THE SOFTWARE.
                                 <p></p>
                                 <p>Campos visibles:</p>
                                 <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Identificador
-                                <input type="checkbox" ng-model="visibles.descripcion" ng-checked="visibles.descripcion" >Descripción
-                                <input type="checkbox" ng-model="visibles.id_empleado" ng-checked="visibles.id_empleado">Empleado                                                                                                                            
+                                <input type="checkbox" ng-model="visibles.descripcion" ng-checked="visibles.descripcion" >Descripción                                                                                   
                                 <p></p>
                             </div>
                         </div>
@@ -114,8 +113,7 @@ THE SOFTWARE.
                                     <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
                                         <option style="display:none">Selecciona un campo</option>
                                         <option value="id">Identificador</option>
-                                        <option value="descripcion">Descripción</option>
-                                        <option value="id_empleado">Empleado</option>                                                 
+                                        <option value="descripcion">Descripción</option>                                                
                                     </select>
                                     <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
                                         <option style="display:none">Selecciona una operacion</option>
@@ -175,12 +173,6 @@ THE SOFTWARE.
                         <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                         <a ng-show="visibles.descripcion" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                     </th>
-                    <th ng-show="visibles.id_empleado" class="text-center">
-                        Empleado<br/>
-                        <a ng-show="visibles.id_empleado" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.id_empleado" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                    </th>
                     <th  class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -188,7 +180,6 @@ THE SOFTWARE.
                 <tr class="text-center" ng-repeat="obj in page| filter:searchText">
                     <td ng-show="visibles.id">{{obj.id}}</td>
                     <td ng-show="visibles.descripcion">{{obj.descripcion}}</td>
-                    <td ng-show="visibles.id_empleado"><a href="#/empleado/view/{{obj.obj_empleado.id}}">{{obj.obj_empleado.nombre}}</a></td>
                     <td>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

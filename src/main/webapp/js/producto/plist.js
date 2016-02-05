@@ -41,7 +41,7 @@ moduloProducto.controller('ProductoPListController', ['$scope', '$routeParams', 
         $scope.ob = "producto";
         $scope.op = "plist";
         $scope.title = "Listado de productos";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-cutlery";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

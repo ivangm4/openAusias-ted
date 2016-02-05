@@ -30,7 +30,7 @@
 moduloProducto.controller('ProductoViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
         $scope.title = "Vista de producto";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-cutlery";
         $scope.ob = 'producto';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

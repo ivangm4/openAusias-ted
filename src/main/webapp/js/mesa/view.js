@@ -30,7 +30,7 @@
 moduloMesa.controller('MesaViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
         $scope.title = "Vista de mesa";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-cube";
         $scope.ob = 'mesa';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

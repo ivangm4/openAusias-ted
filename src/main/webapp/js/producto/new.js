@@ -36,7 +36,7 @@ moduloProducto.controller('ProductoNewController', ['$scope', '$routeParams', '$
         $scope.op = 'new';
         $scope.result = null;
         $scope.title = "Edición de producto";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-cutlery";
         $scope.obj = {};
         $scope.obj.obj_tipoproducto = {"id": 0};
         if (sharedSpaceService.getFase() == 0) {

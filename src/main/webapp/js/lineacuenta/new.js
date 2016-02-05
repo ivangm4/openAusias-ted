@@ -36,7 +36,7 @@ moduloLineacuenta.controller('LineacuentaNewController', ['$scope', '$routeParam
         $scope.op = 'new';
         $scope.result = null;
         $scope.title = "Edición de la línea de cuenta";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-indent";
         $scope.obj = {};
         $scope.obj.obj_cuenta = {"id": 0};
         $scope.obj.obj_producto = {"id": 0};

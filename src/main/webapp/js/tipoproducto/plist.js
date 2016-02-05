@@ -39,7 +39,7 @@ moduloTipoproducto.controller('TipoproductoPListController', ['$scope', '$routeP
         $scope.ob = "tipoproducto";
         $scope.op = "plist";
         $scope.title = "Listado de tipos de productos";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-file-powerpoint-o";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

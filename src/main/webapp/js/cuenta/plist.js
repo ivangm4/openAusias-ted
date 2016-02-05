@@ -35,13 +35,14 @@ moduloCuenta.controller('CuentaPListController', ['$scope', '$routeParams', 'ser
         $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.fecha = true;
-        $scope.visibles.hora = true;
+        $scope.visibles.pagada = true;
         $scope.visibles.id_mesa = true;
+        $scope.visibles.id_empleado = true;
 
         $scope.ob = "cuenta";
         $scope.op = "plist";
         $scope.title = "Listado de cuentas";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-list";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

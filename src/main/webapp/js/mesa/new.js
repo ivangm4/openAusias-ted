@@ -36,17 +36,10 @@ moduloMesa.controller('MesaNewController', ['$scope', '$routeParams', '$location
         $scope.op = 'new';
         $scope.result = null;
         $scope.title = "Edición de mesa";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-cube";
         $scope.obj = {};
-        $scope.obj.obj_empleado = {"id": 0};
-        if (sharedSpaceService.getFase() == 0) {
-            if ($routeParams.empleado && $routeParams.empleado > 0) {
-                $scope.obj.obj_empleado.id = $routeParams.empleado;
-            }
-        } else {
-            $scope.obj = sharedSpaceService.getObject();
-            sharedSpaceService.setFase(0);
-        }
+        $scope.obj = sharedSpaceService.getObject();
+        sharedSpaceService.setFase(0);
         $scope.chooseOne = function (foreignObjectName) {
             sharedSpaceService.setObject($scope.obj);
             sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
@@ -58,13 +51,6 @@ moduloMesa.controller('MesaNewController', ['$scope', '$routeParams', '$location
                 $scope.result = data;
             });
         };
-        $scope.$watch('obj.obj_empleado.id', function () {
-            if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('empleado', $scope.obj.obj_empleado.id)).then(function (data2) {
-                    $scope.obj.obj_empleado = data2.message;
-                });
-            }
-        });
         $scope.back = function () {
             window.history.back();
         };

@@ -38,7 +38,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
-import net.daw.dao.implementation.EmpleadoDao;
 import net.daw.helper.statics.EncodingUtilHelper;
 
 public class MesaBean implements GenericBean {
@@ -47,10 +46,6 @@ public class MesaBean implements GenericBean {
     private Integer id;
     @Expose
     private String descripcion = "";
-    @Expose(serialize = false)
-    private Integer id_empleado = 0;
-    @Expose(deserialize = false)
-    private EmpleadoBean obj_empleado = null;
     
     public MesaBean() {
         this.id = 0;
@@ -76,31 +71,10 @@ public class MesaBean implements GenericBean {
         this.descripcion = descripcion;
     }
 
-    public Integer getId_empleado() {
-        return id_empleado;
-    }
-
-    public void setId_empleado(Integer id_empleado) {
-        this.id_empleado = id_empleado;
-    }
-
-    public EmpleadoBean getObj_empleado() {
-        return obj_empleado;
-    }
-
-    public void setObj_empleado(EmpleadoBean obj_empleado) {
-        this.obj_empleado = obj_empleado;
-    }
-
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
         strJson += "descripcion:" + descripcion + ",";
-        if (expand) {
-            strJson += "obj_empleado:" + obj_empleado.toJson(false) + ",";
-        } else {
-            strJson += "id_empleado:" + id_empleado + ",";
-        }
         strJson += "}";
         return strJson;
     }
@@ -109,9 +83,7 @@ public class MesaBean implements GenericBean {
     public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
-        strColumns += "descripcion,";
-        strColumns += "id_empleado";
-
+        strColumns += "descripcion";
         return strColumns;
     }
 
@@ -119,16 +91,14 @@ public class MesaBean implements GenericBean {
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += EncodingUtilHelper.quotate(descripcion) + ",";
-        strColumns += id_empleado;
+        strColumns += EncodingUtilHelper.quotate(descripcion);
         return strColumns;
     }
 
     @Override
     public String toPairs() {
         String strPairs = "";
-        strPairs += "descripcion=" + EncodingUtilHelper.quotate(descripcion) + ",";
-        strPairs += "id_empleado=" + id_empleado;
+        strPairs += "descripcion=" + EncodingUtilHelper.quotate(descripcion);
         return strPairs;
     }
 
@@ -136,18 +106,7 @@ public class MesaBean implements GenericBean {
     public MesaBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
         this.setDescripcion(oResultSet.getString("descripcion"));
-        if (expand > 0) {
-            EmpleadoBean oEmpleadoBean = new EmpleadoBean();
-            EmpleadoDao oEmpleadoDao = new EmpleadoDao(pooledConnection);
-            oEmpleadoBean.setId(oResultSet.getInt("id_empleado"));
-            oEmpleadoBean = oEmpleadoDao.get(oEmpleadoBean, expand - 1);
-            this.setObj_empleado(oEmpleadoBean);
-        } else {
-            this.setId_empleado(oResultSet.getInt("id_empleado"));
-        }
         return this;
-
     }
-
 }
 

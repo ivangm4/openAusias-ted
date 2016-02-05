@@ -50,6 +50,8 @@ public class ProductoBean implements GenericBean {
     private String nombre = "";
     @Expose
     private Double precio;
+    
+    //Claves externas.
     @Expose(serialize = false)
     private Integer id_tipoproducto = 0;
     @Expose(deserialize = false)

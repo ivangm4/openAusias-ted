@@ -37,7 +37,7 @@ moduloLineacuenta.controller('LineacuentaRemoveController', ['$scope', '$routePa
         $scope.ob = 'lineacuenta';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de una línea de cuenta";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-indent";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
             $scope.bean = data.message;
         });

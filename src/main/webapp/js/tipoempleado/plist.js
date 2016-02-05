@@ -39,7 +39,7 @@ moduloTipoempleado.controller('TipoempleadoPListController', ['$scope', '$routeP
         $scope.ob = "tipoempleado";
         $scope.op = "plist";
         $scope.title = "Listado de tipos de empleados";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-user-secret";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

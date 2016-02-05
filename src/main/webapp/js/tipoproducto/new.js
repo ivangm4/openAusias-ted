@@ -36,7 +36,7 @@ moduloTipoproducto.controller('TipoproductoNewController', ['$scope', '$routePar
         $scope.op = 'new';
         $scope.result = null;
         $scope.title = "Edición de tipo de producto";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-file-powerpoint-o";
         $scope.obj = {};
         $scope.obj = sharedSpaceService.getObject();
         sharedSpaceService.setFase(0);

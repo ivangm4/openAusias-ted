@@ -37,7 +37,7 @@ moduloEmpleado.controller('EmpleadoRemoveController', ['$scope', '$routeParams',
         $scope.ob = 'empleado';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de un empleado";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-users";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
             $scope.bean = data.message;
         });

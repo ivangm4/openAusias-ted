@@ -32,7 +32,6 @@ moduloMesa.controller('MesaSelectionController', ['$scope', '$routeParams', 'ser
         $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.descripcion = true;
-        $scope.visibles.id_empleado = true;
         
         $scope.ob = "mesa";
         $scope.op = "selection";

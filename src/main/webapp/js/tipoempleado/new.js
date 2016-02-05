@@ -36,7 +36,7 @@ moduloTipoempleado.controller('TipoempleadoNewController', ['$scope', '$routePar
         $scope.op = 'new';
         $scope.result = null;
         $scope.title = "Edición de tipo de empleado";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-user-secret";
         $scope.obj = {};
         $scope.obj = sharedSpaceService.getObject();
         sharedSpaceService.setFase(0);

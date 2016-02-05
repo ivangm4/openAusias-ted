@@ -46,7 +46,7 @@ moduloEmpleado.controller('EmpleadoPListController', ['$scope', '$routeParams', 
         $scope.ob = "empleado";
         $scope.op = "plist";
         $scope.title = "Listado de empleados";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-users";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

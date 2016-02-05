@@ -38,9 +38,10 @@ import java.sql.Connection;
 import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import net.daw.bean.publicinterface.GenericBean;
+import net.daw.dao.implementation.EmpleadoDao;
 import net.daw.dao.implementation.MesaDao;
 import net.daw.helper.statics.EncodingUtilHelper;
 
@@ -50,13 +51,18 @@ public class CuentaBean implements GenericBean {
     @Expose
     private Integer id;
     @Expose
-    private Date fecha = new Date();
-    @Expose
-    private Time hora;
+    private Timestamp fecha;
+    private Boolean pagada;
+    
+    //Claves externas.
     @Expose(serialize = false)
     private Integer id_mesa = 0;
     @Expose(deserialize = false)
     private MesaBean obj_mesa = null;
+    @Expose(serialize = false)
+    private Integer id_empleado = 0;
+    @Expose(deserialize = false)
+    private EmpleadoBean obj_empleado = null;
     
     public CuentaBean() {
         this.id = 0;
@@ -74,20 +80,20 @@ public class CuentaBean implements GenericBean {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
-        return hora;
+    public Boolean getPagada() {
+        return pagada;
     }
 
-    public void setHora(Time hora) {
-        this.hora = hora;
+    public void setPagada(Boolean pagada) {
+        this.pagada = pagada;
     }
 
     public Integer getId_mesa() {
@@ -106,15 +112,37 @@ public class CuentaBean implements GenericBean {
         this.obj_mesa = obj_mesa;
     }
 
+    public Integer getId_empleado() {
+        return id_empleado;
+    }
+
+    public void setId_empleado(Integer id_empleado) {
+        this.id_empleado = id_empleado;
+    }
+
+    public EmpleadoBean getObj_empleado() {
+        return obj_empleado;
+    }
+
+    public void setObj_empleado(EmpleadoBean obj_empleado) {
+        this.obj_empleado = obj_empleado;
+    }
+
     public String toJson(Boolean expand) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String strJson = "{";
         strJson += "id:" + id + ",";
-        strJson += "fecha:" + fecha + ",";
-        strJson += "hora:" + hora + ",";
+        strJson += "fecha:" + EncodingUtilHelper.quotate(format.format(fecha)) + ",";
+        strJson += "pagada:" + pagada + ",";
         if (expand) {
             strJson += "obj_mesa:" + obj_mesa.toJson(false) + ",";
         } else {
             strJson += "id_mesa:" + id_mesa + ",";
+        }
+        if (expand) {
+            strJson += "obj_empleado:" + obj_empleado.toJson(false) + ",";
+        } else {
+            strJson += "id_empleado:" + id_empleado + ",";
         }
         strJson += "}";
         return strJson;
@@ -125,9 +153,9 @@ public class CuentaBean implements GenericBean {
         String strColumns = "";
         strColumns += "id,";
         strColumns += "fecha,";
-        strColumns += "hora,";
-        strColumns += "id_mesa";
-
+        strColumns += "pagada,";
+        strColumns += "id_mesa,";
+        strColumns += "id_empleado";
         return strColumns;
     }
 
@@ -135,20 +163,22 @@ public class CuentaBean implements GenericBean {
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha) + ",";
-        strColumns += hora + ",";
-        strColumns += id_mesa;
+        strColumns += EncodingUtilHelper.stringifyAndQuotateCuenta(fecha) + ",";
+        strColumns += pagada + ",";
+        strColumns += id_mesa + ",";
+        strColumns += id_empleado;
 
         return strColumns;
     }
 
     @Override
     public String toPairs() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); 
         String strPairs = "";
         strPairs += "fecha=" + EncodingUtilHelper.quotate(format.format(fecha)) + ",";
-        strPairs += "hora=" + hora + ",";
-        strPairs += "id_mesa=" + id_mesa;
+        strPairs += "pagada=" + pagada + ",";
+        strPairs += "id_mesa=" + id_mesa + ",";
+        strPairs += "id_empleado=" + id_empleado;
 
         return strPairs;
     }
@@ -156,8 +186,8 @@ public class CuentaBean implements GenericBean {
     @Override
     public CuentaBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
-        this.setFecha(oResultSet.getDate("fecha"));
-        this.setHora(oResultSet.getTime("hora"));
+        this.setFecha(oResultSet.getTimestamp("fecha"));
+        this.setPagada(oResultSet.getBoolean("pagada"));
         if (expand > 0) {
             MesaBean oMesaBean = new MesaBean();
             MesaDao oMesaDao = new MesaDao(pooledConnection);
@@ -166,6 +196,15 @@ public class CuentaBean implements GenericBean {
             this.setObj_mesa(oMesaBean);
         } else {
             this.setId_mesa(oResultSet.getInt("id_mesa"));
+        }
+        if (expand > 0) {
+            EmpleadoBean oEmpleadoBean = new EmpleadoBean();
+            EmpleadoDao oEmpleadoDao = new EmpleadoDao(pooledConnection);
+            oEmpleadoBean.setId(oResultSet.getInt("id_empleado"));
+            oEmpleadoBean = oEmpleadoDao.get(oEmpleadoBean, expand - 1);
+            this.setObj_empleado(oEmpleadoBean);
+        } else {
+            this.setId_empleado(oResultSet.getInt("id_empleado"));
         }
         return this;
     }

@@ -37,7 +37,7 @@ moduloTipoproducto.controller('TipoproductoRemoveController', ['$scope', '$route
         $scope.ob = 'tipoproducto';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de un tipo de producto";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-file-powerpoint-o";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
             $scope.bean = data.message;
         });

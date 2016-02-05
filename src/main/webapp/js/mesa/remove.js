@@ -37,7 +37,7 @@ moduloMesa.controller('MesaRemoveController', ['$scope', '$routeParams', 'server
         $scope.ob = 'mesa';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de una mesa";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-cube";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
             $scope.bean = data.message;
         });

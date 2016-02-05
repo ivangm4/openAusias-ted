@@ -35,12 +35,11 @@ moduloMesa.controller('MesaPListController', ['$scope', '$routeParams', 'serverS
         $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.descripcion = true;
-        $scope.visibles.id_empleado = true;
 
         $scope.ob = "mesa";
         $scope.op = "plist";
         $scope.title = "Listado de mesas";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-cube";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

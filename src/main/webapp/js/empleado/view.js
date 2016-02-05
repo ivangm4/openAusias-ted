@@ -30,7 +30,7 @@
 moduloEmpleado.controller('EmpleadoViewController', ['$scope', '$routeParams', 'serverService','$location',
     function ($scope, $routeParams, serverService,$location) {
         $scope.title = "Vista de empleado";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-users";
         $scope.ob = 'empleado';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

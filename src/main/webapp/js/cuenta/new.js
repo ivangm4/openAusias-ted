@@ -28,20 +28,24 @@
 
 'use strict';
 
-moduloCuenta.controller('CuentaNewController', ['timepicker', '$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $log) {
+moduloCuenta.controller('CuentaNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
         $scope.ob = 'cuenta';
         $scope.op = 'new';
         $scope.result = null;
         $scope.title = "Edición de cuenta";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-list";
         $scope.obj = {};
         $scope.obj.obj_mesa = {"id": 0};
+        $scope.obj.obj_empleado = {"id": 0};
         if (sharedSpaceService.getFase() == 0) {
             if ($routeParams.mesa && $routeParams.mesa > 0) {
                 $scope.obj.obj_mesa.id = $routeParams.mesa;
+            }
+            if ($routeParams.empleado && $routeParams.empleado > 0) {
+                $scope.obj.obj_empleado.id = $routeParams.empleado;
             }
         } else {
             $scope.obj = sharedSpaceService.getObject();
@@ -54,8 +58,11 @@ moduloCuenta.controller('CuentaNewController', ['timepicker', '$scope', '$routeP
             $location.path('/' + foreignObjectName + '/selection/1/10');
         }
         $scope.save = function () {
-            var dateFechaAsString = $filter('date')($scope.obj.fecha, "dd/MM/yyyy");
-            $scope.obj.fecha = dateFechaAsString;
+            var dateFechaAsString = $filter('date')($scope.obj.fecha, "yyyy/MM/dd");
+            var h = $scope.mytime.getHours();
+            var m = $scope.mytime.getMinutes();
+            var s = $scope.mytime.getSeconds();
+            $scope.obj.fecha = dateFechaAsString + " " + h + ":" + m + ":" + s;
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             });
@@ -64,6 +71,13 @@ moduloCuenta.controller('CuentaNewController', ['timepicker', '$scope', '$routeP
             if ($scope.obj) {
                 serverService.getDataFromPromise(serverService.promise_getOne('mesa', $scope.obj.obj_mesa.id)).then(function (data2) {
                     $scope.obj.obj_mesa = data2.message;
+                });
+            }
+        });
+        $scope.$watch('obj.obj_empleado.id', function () {
+            if ($scope.obj) {
+                serverService.getDataFromPromise(serverService.promise_getOne('empleado', $scope.obj.obj_empleado.id)).then(function (data2) {
+                    $scope.obj.obj_empleado = data2.message;
                 });
             }
         });
@@ -97,4 +111,17 @@ moduloCuenta.controller('CuentaNewController', ['timepicker', '$scope', '$routeP
         $scope.popup2 = {
             opened: false
         };
+
+        //TIMEPICKER
+        $scope.mytime = new Date();
+
+        $scope.hstep = 1;
+        $scope.mstep = 1;
+
+        $scope.options = {
+            hstep: [1, 2, 3],
+            mstep: [1, 5, 10, 15, 25, 30]
+        };
+
+        $scope.ismeridian = false;
     }]);

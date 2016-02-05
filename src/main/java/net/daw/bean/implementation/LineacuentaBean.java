@@ -47,6 +47,8 @@ public class LineacuentaBean implements GenericBean {
     private Integer id;
     @Expose
     private Integer cantidadProducto;
+    
+    //Claves externas.
     @Expose(serialize = false)
     private Integer id_cuenta = 0;
     @Expose(deserialize = false)

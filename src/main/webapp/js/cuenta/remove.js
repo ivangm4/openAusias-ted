@@ -37,7 +37,7 @@ moduloCuenta.controller('CuentaRemoveController', ['$scope', '$routeParams', 'se
         $scope.ob = 'cuenta';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de una cuenta";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "fa-list";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {            
             $scope.bean = data.message;
         });
